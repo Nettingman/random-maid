@@ -6,13 +6,10 @@ Maid RPG character generator
 """
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
-from maidWidget import CMaidWidget
-from helpWidget import CHelpWidget
-from masterWidget import CMasterWidget
-from butlerWidget import CButlerWidget
-
-Qt.QApplication.setStyle("Fusion")
-
+from .maidWidget import CMaidWidget
+from .helpWidget import CHelpWidget
+from .masterWidget import CMasterWidget
+from .butlerWidget import CButlerWidget
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     """ Main window for the application. """

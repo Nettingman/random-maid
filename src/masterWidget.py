@@ -4,7 +4,8 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-import data.colors as maidColors, data.masterType as masterType, data.masterPowers as masterPowers, data.maidTypes as maidTypes, data.stressExplosions as stressExplosions, data.masterSpecialQualities as masterSpecialQualities, data.specialQualities as specialQualities
+from .data import colors, masterType, masterPowers, maidTypes, stressExplosions, masterSpecialQualities, specialQualities
+
 masterTypeList = masterType.returnMasterTypeList()
 masterPowerList = masterPowers.returnMasterPowerList()
 maidTypeList = maidTypes.returnMaidTypeList()
@@ -383,7 +384,7 @@ class CMasterWidget(QtWidgets.QWidget):
         if caller == False:
             caller = self.sender()
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        color = maidColors.getColor()
+        color = colors.getColor()
         caller.parent.setText(color)
 
     def generateGender(self, hideMessage=False):

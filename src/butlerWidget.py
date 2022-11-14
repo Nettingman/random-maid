@@ -1,29 +1,34 @@
 """
 Widget for the random maid dock.
 """
+
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-import data.maidTypes as maidTypes, data.colors as maidColors, data.weapons as weapons, data.specialQualities as specialQualities, data.maidRoots as maidRoots, data.stressExplosions as stressExplosions, data.maidPowers as MaidPowers
-maidTypeList = maidTypes.returnMaidTypeList()
-weaponList = weapons.returnWeaponList()
-specialQualityList = specialQualities.returnSpecialQualityList()
-maidRootList = maidRoots.returnMaidRootList()
-stressExplosionList = stressExplosions.returnStressExplosionList()
-maidPowerList = MaidPowers.returnMaidPowerList()
+from .data import colors, butlerTypes, butlerPowers, butlerRoots, butlerQualities, butlerWeapons
 
-class CMaidWidget(QtWidgets.QWidget):
+butlerTypeList = butlerTypes.returnButlerTypeList()
+butlerPowerList = butlerPowers.returnButlerPowerList()
+butlerRootList = butlerRoots.returnButlerRootList()
+butlerQualityList = butlerQualities.returnButlerQualityList()
+butlerWeaponList = butlerWeapons.returnWeaponList()
+suitColorList = ['Black', 'Light Gray', 'Dark Gray', 'Dark Blue', 'White']
+hairColorList = ['Black', 'Gray', 'Blonde', 'Silver', 'White']
+
+class CButlerWidget(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.parent = parent
-        self.stats = [
-         0, 0, 0, 0, 0, 0]
-        self.rebuildingMaidPowers = False
+
+        self.stats = [0, 0, 0, 0, 0, 0]
+
         self.loVLayoutMain = QtWidgets.QVBoxLayout()
         self.loHLayoutMain = QtWidgets.QHBoxLayout()
+
         self.gbBasic = QtWidgets.QGroupBox('Basics', self)
         self.loGbBasic = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Name: ')
         hLayout.addWidget(textLabel)
@@ -32,6 +37,7 @@ class CMaidWidget(QtWidgets.QWidget):
         hLayout.addWidget(self.liName)
         hLayout.addStretch(1)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Age:   ')
         hLayout.addWidget(textLabel)
@@ -39,10 +45,14 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liAge.setFixedWidth(50)
         self.liAge.setMaximum(9999)
         hLayout.addWidget(self.liAge)
-        hLayout.addStretch(1)
+        self.bAge = QtWidgets.QPushButton('R')
+        self.bAge.parent = self.liAge
+        self.bAge.setFixedWidth(50)
+        hLayout.addWidget(self.bAge)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Uniform color: ')
+        textLabel = QtWidgets.QLabel('Suit color: ')
         hLayout.addWidget(textLabel)
         self.liUniColor = QtWidgets.QLineEdit()
         self.liUniColor.setFixedWidth(150)
@@ -52,17 +62,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bUniColor.setFixedWidth(50)
         hLayout.addWidget(self.bUniColor)
         self.loGbBasic.addLayout(hLayout)
-        hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Eye color: ')
-        hLayout.addWidget(textLabel)
-        self.liEyeColor = QtWidgets.QLineEdit()
-        self.liEyeColor.setFixedWidth(150)
-        hLayout.addWidget(self.liEyeColor)
-        self.bEyeColor = QtWidgets.QPushButton('R')
-        self.bEyeColor.setFixedWidth(50)
-        self.bEyeColor.parent = self.liEyeColor
-        hLayout.addWidget(self.bEyeColor)
-        self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Hair color: ')
         hLayout.addWidget(textLabel)
@@ -74,16 +74,29 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bHairColor.parent = self.liHairColor
         hLayout.addWidget(self.bHairColor)
         self.loGbBasic.addLayout(hLayout)
+
+        hLayout = QtWidgets.QHBoxLayout()
+        textLabel = QtWidgets.QLabel('Eye color: ')
+        hLayout.addWidget(textLabel)
+        self.liEyeColor = QtWidgets.QLineEdit()
+        self.liEyeColor.setFixedWidth(150)
+        hLayout.addWidget(self.liEyeColor)
+        self.bEyeColor = QtWidgets.QPushButton('R')
+        self.bEyeColor.setFixedWidth(50)
+        self.bEyeColor.parent = self.liEyeColor
+        hLayout.addWidget(self.bEyeColor)
+        self.loGbBasic.addLayout(hLayout)
         self.gbBasic.setLayout(self.loGbBasic)
         self.loH1 = QtWidgets.QHBoxLayout()
         self.loH1.addWidget(self.gbBasic)
-        self.gbMaidType = QtWidgets.QGroupBox('Maid Type', self)
+        self.gbMaidType = QtWidgets.QGroupBox('Butler Type', self)
         self.loGbMaidType = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('First: ')
         hLayout.addWidget(textLabel)
         self.liFirstType = QtWidgets.QComboBox()
-        self.setMaidTypeComboBox(self.liFirstType)
+        self.setButlerTypeComboBox(self.liFirstType)
         self.liFirstType.setFixedWidth(100)
         hLayout.addWidget(self.liFirstType)
         self.bFirstType = QtWidgets.QPushButton('R')
@@ -91,6 +104,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bFirstType.parent = self.liFirstType
         hLayout.addWidget(self.bFirstType)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.descFirst = QtWidgets.QLabel('')
         self.descFirst.setWordWrap(True)
@@ -98,11 +112,12 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liFirstType.changeList = [0, 0, 0, 0, 0, 0]
         hLayout.addWidget(self.descFirst)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Second: ')
         hLayout.addWidget(textLabel)
         self.liSecondType = QtWidgets.QComboBox()
-        self.setMaidTypeComboBox(self.liSecondType)
+        self.setButlerTypeComboBox(self.liSecondType)
         self.liSecondType.setFixedWidth(100)
         hLayout.addWidget(self.liSecondType)
         self.bSecondType = QtWidgets.QPushButton('R')
@@ -110,6 +125,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bSecondType.parent = self.liSecondType
         hLayout.addWidget(self.bSecondType)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.descSecond = QtWidgets.QLabel('')
         self.descSecond.setWordWrap(True)
@@ -122,6 +138,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loH1.addWidget(self.gbMaidType)
         self.gbAttri = QtWidgets.QGroupBox('Attributes', self)
         self.loGbAttri = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('ATH:')
         textLabel.setToolTip('Athletics: Physical ability, combat ability.')
@@ -136,11 +153,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bATH.setFixedWidth(50)
         self.bATH.parent = self.liATH
         hLayout.addWidget(self.bATH, 1, QtCore.Qt.AlignRight)
-        self.bMpATH = QtWidgets.QPushButton('MP')
-        self.bMpATH.setFixedWidth(50)
-        self.bMpATH.statType = 0
-        self.liATH.mpButton = self.bMpATH
-        hLayout.addWidget(self.bMpATH, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('AFF:')
@@ -156,11 +168,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bAFF.setFixedWidth(50)
         self.bAFF.parent = self.liAFF
         hLayout.addWidget(self.bAFF, 1, QtCore.Qt.AlignRight)
-        self.bMpAFF = QtWidgets.QPushButton('MP')
-        self.bMpAFF.setFixedWidth(50)
-        self.bMpAFF.statType = 1
-        self.liAFF.mpButton = self.bMpAFF
-        hLayout.addWidget(self.bMpAFF, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('SKI:')
@@ -176,11 +183,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bSKI.setFixedWidth(50)
         self.bSKI.parent = self.liSKI
         hLayout.addWidget(self.bSKI, 1, QtCore.Qt.AlignRight)
-        self.bMpSKI = QtWidgets.QPushButton('MP')
-        self.bMpSKI.setFixedWidth(50)
-        self.bMpSKI.statType = 2
-        self.liSKI.mpButton = self.bMpSKI
-        hLayout.addWidget(self.bMpSKI, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('CNN:')
@@ -196,11 +198,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bCNN.setFixedWidth(50)
         self.bCNN.parent = self.liCNN
         hLayout.addWidget(self.bCNN, 1, QtCore.Qt.AlignRight)
-        self.bMpCNN = QtWidgets.QPushButton('MP')
-        self.bMpCNN.setFixedWidth(50)
-        self.bMpCNN.statType = 3
-        self.liCNN.mpButton = self.bMpCNN
-        hLayout.addWidget(self.bMpCNN, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('LCK:')
@@ -216,11 +213,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bLCK.setFixedWidth(50)
         self.bLCK.parent = self.liLCK
         hLayout.addWidget(self.bLCK, 1, QtCore.Qt.AlignRight)
-        self.bMpLCK = QtWidgets.QPushButton('MP')
-        self.bMpLCK.setFixedWidth(50)
-        self.bMpLCK.statType = 4
-        self.liLCK.mpButton = self.bMpLCK
-        hLayout.addWidget(self.bMpLCK, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('WIL:')
@@ -236,11 +228,6 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bWIL.setFixedWidth(50)
         self.bWIL.parent = self.liWIL
         hLayout.addWidget(self.bWIL, 1, QtCore.Qt.AlignRight)
-        self.bMpWIL = QtWidgets.QPushButton('MP')
-        self.bMpWIL.setFixedWidth(50)
-        self.bMpWIL.statType = 5
-        self.liWIL.mpButton = self.bMpWIL
-        hLayout.addWidget(self.bMpWIL, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
         self.gbAttri.setLayout(self.loGbAttri)
         self.loH2 = QtWidgets.QHBoxLayout()
@@ -248,11 +235,11 @@ class CMaidWidget(QtWidgets.QWidget):
         self.gbEtc = QtWidgets.QGroupBox('Etcetera', self)
         self.loGbEtc = QtWidgets.QVBoxLayout()
         hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Maid root: ')
+        textLabel = QtWidgets.QLabel('Butler root: ')
         hLayout.addWidget(textLabel)
         self.liMaidRoot = QtWidgets.QComboBox()
-        self.setMaidRootComboBox()
-        self.liMaidRoot.setFixedWidth(130)
+        self.setButlerRootComboBox()
+        self.liMaidRoot.setFixedWidth(150)
         hLayout.addWidget(self.liMaidRoot)
         self.bMaidRoot = QtWidgets.QPushButton('R')
         self.bMaidRoot.parent = self.liMaidRoot
@@ -260,31 +247,35 @@ class CMaidWidget(QtWidgets.QWidget):
         hLayout.addWidget(self.bMaidRoot)
         self.loGbEtc.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Stress explosion: ')
-        hLayout.addWidget(textLabel)
-        self.liStress = QtWidgets.QComboBox()
-        self.setStressExplosionComboBox()
-        self.liStress.setFixedWidth(130)
-        hLayout.addWidget(self.liStress)
-        self.bStress = QtWidgets.QPushButton('R')
-        self.bStress.parent = self.liStress
-        self.bStress.setFixedWidth(50)
-        hLayout.addWidget(self.bStress)
-        self.loGbEtc.addLayout(hLayout)
-        hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Maid power: ')
+        textLabel = QtWidgets.QLabel('Butler power: ')
         hLayout.addWidget(textLabel)
         self.liMP = QtWidgets.QComboBox()
         self.liMP.setFixedWidth(150)
+        self.liFirstType.powerBox = self.liMP
+        self.liMP.parent = self.liFirstType
         hLayout.addWidget(self.liMP)
+        self.bButlerPower = QtWidgets.QPushButton('R')
+        self.bButlerPower.parent = self.liMP
+        self.liMP.rollButton = self.bButlerPower
+        self.bButlerPower.setFixedWidth(50)
+        hLayout.addWidget(self.bButlerPower)
         self.loGbEtc.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
-        textLabel = QtWidgets.QLabel('Maid power 2: ')
+        textLabel = QtWidgets.QLabel('Butler power 2: ')
         hLayout.addWidget(textLabel)
         self.liMP2 = QtWidgets.QComboBox()
         self.liMP2.setFixedWidth(150)
+        self.liSecondType.powerBox = self.liMP2
+        self.liMP2.parent = self.liSecondType
         hLayout.addWidget(self.liMP2)
+        self.bButlerPower2 = QtWidgets.QPushButton('R')
+        self.bButlerPower2.parent = self.liMP2
+        self.liMP2.rollButton = self.bButlerPower2
+        self.bButlerPower2.setFixedWidth(50)
+        hLayout.addWidget(self.bButlerPower2)
         self.loGbEtc.addLayout(hLayout)
+        self.liMP.otherMP = self.liMP2
+        self.liMP2.otherMP = self.liMP
         self.favor = QtWidgets.QLabel('Favor: 0')
         self.spirit = QtWidgets.QLabel('Spirit: 0')
         self.loGbEtc.addWidget(self.favor)
@@ -295,7 +286,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loGbSpec = QtWidgets.QVBoxLayout()
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec1 = QtWidgets.QComboBox()
-        self.setSpecialQualityComboBox(self.liSpec1)
+        self.setButlerQualityComboBox(self.liSpec1)
         self.liSpec1.setFixedWidth(150)
         hLayout.addWidget(self.liSpec1, 10, QtCore.Qt.AlignRight)
         self.bSpec1 = QtWidgets.QPushButton('R')
@@ -305,7 +296,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loGbSpec.addLayout(hLayout)
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec2 = QtWidgets.QComboBox()
-        self.setSpecialQualityComboBox(self.liSpec2)
+        self.setButlerQualityComboBox(self.liSpec2)
         self.liSpec2.setFixedWidth(150)
         hLayout.addWidget(self.liSpec2, 10, QtCore.Qt.AlignRight)
         self.bSpec2 = QtWidgets.QPushButton('R')
@@ -317,7 +308,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec3 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec3, 1, QtCore.Qt.AlignRight)
         self.liSpec3 = QtWidgets.QComboBox()
-        self.setSpecialQualityComboBox(self.liSpec3)
+        self.setButlerQualityComboBox(self.liSpec3)
         self.liSpec3.setFixedWidth(150)
         hLayout.addWidget(self.liSpec3, 1, QtCore.Qt.AlignRight)
         self.bSpec3 = QtWidgets.QPushButton('R')
@@ -331,7 +322,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec4 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec4, 1, QtCore.Qt.AlignRight)
         self.liSpec4 = QtWidgets.QComboBox()
-        self.setSpecialQualityComboBox(self.liSpec4)
+        self.setButlerQualityComboBox(self.liSpec4)
         self.liSpec4.setFixedWidth(150)
         hLayout.addWidget(self.liSpec4, 1, QtCore.Qt.AlignRight)
         self.bSpec4 = QtWidgets.QPushButton('R')
@@ -345,7 +336,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec5 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec5, 1, QtCore.Qt.AlignRight)
         self.liSpec5 = QtWidgets.QComboBox()
-        self.setSpecialQualityComboBox(self.liSpec5)
+        self.setButlerQualityComboBox(self.liSpec5)
         self.liSpec5.setFixedWidth(150)
         hLayout.addWidget(self.liSpec5, 1, QtCore.Qt.AlignRight)
         self.bSpec5 = QtWidgets.QPushButton('R')
@@ -359,23 +350,28 @@ class CMaidWidget(QtWidgets.QWidget):
         self.gbSpec.setFixedWidth(250)
         self.loH3 = QtWidgets.QHBoxLayout()
         self.loH3.addWidget(self.gbSpec)
-        self.gbWeap = QtWidgets.QGroupBox('Weapon', self)
+        self.gbWeap = QtWidgets.QGroupBox('Weapons', self)
         self.loGbWeap = QtWidgets.QVBoxLayout()
-        self.cbEnableWeapon = QtWidgets.QCheckBox('Enable weapon')
-        self.cbEnableWeapon.setChecked(True)
-        self.loGbWeap.addWidget(self.cbEnableWeapon)
         self.liWeapon = QtWidgets.QComboBox()
-        self.setWeaponComboBox()
+        self.setButlerWeaponComboBox(self.liWeapon)
         self.loGbWeap.addWidget(self.liWeapon)
         self.bWeap = QtWidgets.QPushButton('R')
+        self.bWeap.parent = self.liWeapon
         self.loGbWeap.addWidget(self.bWeap)
-        self.cbEnableWeapon.button = self.bWeap
-        self.cbEnableWeapon.box = self.liWeapon
+        self.loGbWeap.addWidget(QtWidgets.QLabel('\n\n'))
+        self.liWeapon2 = QtWidgets.QComboBox()
+        self.setButlerWeaponComboBox(self.liWeapon2)
+        self.loGbWeap.addWidget(self.liWeapon2)
+        self.bWeap2 = QtWidgets.QPushButton('R')
+        self.bWeap2.parent = self.liWeapon2
+        self.loGbWeap.addWidget(self.bWeap2)
+        self.liWeapon.otherWeapon = self.liWeapon2
+        self.liWeapon2.otherWeapon = self.liWeapon
         self.gbWeap.setLayout(self.loGbWeap)
         self.loH3.addWidget(self.gbWeap)
         self.gbSave = QtWidgets.QGroupBox('Generate and save', self)
         self.loGbSave = QtWidgets.QVBoxLayout()
-        self.bRollAll = QtWidgets.QPushButton('GENERATE\nMAID', self)
+        self.bRollAll = QtWidgets.QPushButton('GENERATE\nBUTLER', self)
         self.loGbSave.addWidget(self.bRollAll)
         self.bSave = QtWidgets.QPushButton('SAVE', self)
         self.loGbSave.addWidget(self.bSave)
@@ -388,60 +384,54 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loHLayoutMain.addLayout(self.loVLayoutMain)
         self.setLayout(self.loHLayoutMain)
         self.setEnabilities()
-        self.setMaidPowerComboBox(self.liMP, [0, 1, 2, 3, 4, 5])
-        self.setMaidPowerComboBox(self.liMP2, [0, 1, 2, 3, 4, 5])
-        self.bATH.clicked.connect(self.generateAttribute)
-        self.bAFF.clicked.connect(self.generateAttribute)
-        self.bSKI.clicked.connect(self.generateAttribute)
-        self.bCNN.clicked.connect(self.generateAttribute)
-        self.bLCK.clicked.connect(self.generateAttribute)
-        self.bWIL.clicked.connect(self.generateAttribute)
-        self.bFirstType.clicked.connect(self.generateMaidType)
-        self.bSecondType.clicked.connect(self.generateMaidType)
-        self.bUniColor.clicked.connect(self.generateMaidColor)
-        self.bEyeColor.clicked.connect(self.generateMaidColor)
-        self.bHairColor.clicked.connect(self.generateMaidColor)
-        self.bSpec1.clicked.connect(self.generateSpecialQuality)
-        self.bSpec2.clicked.connect(self.generateSpecialQuality)
-        self.bSpec3.clicked.connect(self.generateSpecialQuality)
-        self.bSpec4.clicked.connect(self.generateSpecialQuality)
-        self.bSpec5.clicked.connect(self.generateSpecialQuality)
-        self.bWeap.clicked.connect(self.generateWeapon)
-        self.bMaidRoot.clicked.connect(self.generateMaidRoot)
-        self.bStress.clicked.connect(self.generateStressExplosion)
-        self.bMpATH.clicked.connect(self.generateMaidPower)
-        self.bMpAFF.clicked.connect(self.generateMaidPower)
-        self.bMpSKI.clicked.connect(self.generateMaidPower)
-        self.bMpCNN.clicked.connect(self.generateMaidPower)
-        self.bMpLCK.clicked.connect(self.generateMaidPower)
-        self.bMpWIL.clicked.connect(self.generateMaidPower)
-        self.bRollAll.clicked.connect(self.generateFullMaid)
-        self.bSave.clicked.connect(self.saveMaid)
-        self.cbEnableWeapon.clicked.connect(self.setEnabilities)
         self.cbSpec3.clicked.connect(self.setEnabilities)
         self.cbSpec4.clicked.connect(self.setEnabilities)
         self.cbSpec5.clicked.connect(self.setEnabilities)
-        self.liFirstType.currentIndexChanged.connect(self.changedMaidType)
-        self.liSecondType.currentIndexChanged.connect(self.changedMaidType)
-        self.liSpec1.currentIndexChanged.connect(self.changedSpecialQuailty)
-        self.liSpec2.currentIndexChanged.connect(self.changedSpecialQuailty)
-        self.liSpec3.currentIndexChanged.connect(self.changedSpecialQuailty)
-        self.liSpec4.currentIndexChanged.connect(self.changedSpecialQuailty)
-        self.liSpec5.currentIndexChanged.connect(self.changedSpecialQuailty)
-        self.liWeapon.currentIndexChanged.connect(self.changedWeapon)
-        self.liMaidRoot.currentIndexChanged.connect(self.changedMaidRoot)
-        self.liStress.currentIndexChanged.connect(self.changedStressExplosion)
         self.liATH.valueChanged.connect(self.calculateStats)
         self.liAFF.valueChanged.connect(self.calculateStats)
         self.liSKI.valueChanged.connect(self.calculateStats)
         self.liCNN.valueChanged.connect(self.calculateStats)
         self.liLCK.valueChanged.connect(self.calculateStats)
         self.liWIL.valueChanged.connect(self.calculateStats)
-        self.liMP.activated.connect(self.changedMaidPower)
-        self.liMP2.activated.connect(self.changedMaidPower)
+        self.bAge.clicked.connect(self.generateAge)
+        self.bUniColor.clicked.connect(self.generateSuitColor)
+        self.bHairColor.clicked.connect(self.generateHairColor)
+        self.bEyeColor.clicked.connect(self.generateEyeColor)
+        self.bATH.clicked.connect(self.generateAttribute)
+        self.bAFF.clicked.connect(self.generateAttribute)
+        self.bSKI.clicked.connect(self.generateAttribute)
+        self.bCNN.clicked.connect(self.generateAttribute)
+        self.bLCK.clicked.connect(self.generateLuckAttribute)
+        self.bWIL.clicked.connect(self.generateWilAttribute)
+        self.bFirstType.clicked.connect(self.generateButlerType)
+        self.bSecondType.clicked.connect(self.generateButlerType)
+        self.bButlerPower.clicked.connect(self.generateButlerPower)
+        self.bButlerPower2.clicked.connect(self.generateButlerPower)
+        self.bMaidRoot.clicked.connect(self.generateButlerRoot)
+        self.bSpec1.clicked.connect(self.generateButlerQuality)
+        self.bSpec2.clicked.connect(self.generateButlerQuality)
+        self.bSpec3.clicked.connect(self.generateButlerQuality)
+        self.bSpec4.clicked.connect(self.generateButlerQuality)
+        self.bSpec5.clicked.connect(self.generateButlerQuality)
+        self.bWeap.clicked.connect(self.generateButlerWeapon)
+        self.bWeap2.clicked.connect(self.generateButlerWeapon)
+        self.liFirstType.currentIndexChanged.connect(self.changedButlerType)
+        self.liSecondType.currentIndexChanged.connect(self.changedButlerType)
+        self.liMP.currentIndexChanged.connect(self.changedButlerPower)
+        self.liMP2.currentIndexChanged.connect(self.changedButlerPower)
+        self.liMaidRoot.currentIndexChanged.connect(self.changedButlerRoot)
+        self.liSpec1.currentIndexChanged.connect(self.changedButlerQuality)
+        self.liSpec2.currentIndexChanged.connect(self.changedButlerQuality)
+        self.liSpec3.currentIndexChanged.connect(self.changedButlerQuality)
+        self.liSpec4.currentIndexChanged.connect(self.changedButlerQuality)
+        self.liSpec5.currentIndexChanged.connect(self.changedButlerQuality)
+        self.liWeapon.currentIndexChanged.connect(self.changedButlerWeapon)
+        self.liWeapon2.currentIndexChanged.connect(self.changedButlerWeapon)
+        self.bRollAll.clicked.connect(self.generateButler)
+        self.bSave.clicked.connect(self.saveButler)
 
     def setEnabilities(self):
-        for checkb in [self.cbEnableWeapon, self.cbSpec3, self.cbSpec4, self.cbSpec5]:
+        for checkb in [self.cbSpec3, self.cbSpec4, self.cbSpec5]:
             if not checkb.isChecked():
                 checkb.button.setEnabled(False)
                 checkb.box.setEnabled(False)
@@ -450,114 +440,106 @@ class CMaidWidget(QtWidgets.QWidget):
                 checkb.button.setEnabled(True)
                 checkb.box.setEnabled(True)
 
+    def generateAge(self, hideMessage=False):
+        if not hideMessage:
+            self.parent.parent.statusBar().showMessage('Rolled age...', 1500)
+        i = int(str(randint(1, 6)) + str(randint(1, 6)))
+        self.liAge.setValue(i)
+
+    def generateSuitColor(self, hideMessage=False):
+        if not hideMessage:
+            self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
+        i = randint(0, 5)
+        color = []
+        if i == 5:
+            color = colors.getColor()
+        else:
+            color = suitColorList[i]
+        self.liUniColor.setText(color)
+
+    def generateHairColor(self, hideMessage=False):
+        if not hideMessage:
+            self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
+        i = randint(0, 5)
+        color = []
+        if i == 5:
+            color = colors.getColor()
+        else:
+            color = hairColorList[i]
+        self.liHairColor.setText(color)
+
+    def generateEyeColor(self, hideMessage=False):
+        if not hideMessage:
+            self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
+        color = colors.getColor()
+        self.liEyeColor.setText(color)
+
     def generateAttribute(self, caller=False):
         if caller == False:
             caller = self.sender()
             self.parent.parent.statusBar().showMessage('Rolled attribute...', 1500)
         x = randint(1, 6)
         y = randint(1, 6)
-        retVal = int(floor((x + y) / 3))
+        retVal = int(floor((x + y) / 2))
         caller.parent.setValue(retVal)
 
-    def generateMaidType(self, caller=False):
+    def generateLuckAttribute(self, hideMessage=False):
+        if hideMessage == False:
+            self.parent.parent.statusBar().showMessage('Rolled attribute...', 1500)
+        x = randint(1, 6)
+        y = randint(1, 6)
+        retVal = int(floor((x + y) / 3))
+        self.liLCK.setValue(retVal)
+
+    def generateWilAttribute(self, hideMessage=False):
+        if hideMessage == False:
+            self.parent.parent.statusBar().showMessage('Rolled attribute...', 1500)
+        x = randint(1, 6)
+        y = randint(1, 6)
+        retVal = x + y
+        self.liWIL.setValue(retVal)
+
+    def generateButlerType(self, caller=False):
         if caller == False:
             caller = self.sender()
-            self.parent.parent.statusBar().showMessage('Rolled maid type...', 1500)
+            self.parent.parent.statusBar().showMessage('Rolled butler type...', 1500)
         i = randint(0, 5)
         caller.parent.setCurrentIndex(i)
 
-    def generateMaidColor(self, caller=False):
+    def generateButlerPower(self, caller=False):
         if caller == False:
             caller = self.sender()
-            self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        color = maidColors.getColor()
-        caller.parent.setText(color)
+            if caller.parent.count() != 0:
+                self.parent.parent.statusBar().showMessage('Rolled butler power...', 1500)
+        if caller.parent.count() != 0:
+            while True:
+                i = randint(0, 5)
+                caller.parent.setCurrentIndex(i)
+                if caller.parent.otherMP.currentText() == '' or caller.parent.otherMP.currentText() != caller.parent.currentText():
+                    break
 
-    def generateWeapon(self, hideMessage=False):
+    def generateButlerRoot(self, hideMessage=False):
         if not hideMessage:
-            self.parent.parent.statusBar().showMessage('Rolled weapon...', 1500)
-        i = randint(0, 35)
-        self.liWeapon.setCurrentIndex(i)
-
-    def generateMaidRoot(self, hideMessage=False):
-        if not hideMessage:
-            self.parent.parent.statusBar().showMessage('Rolled maid root...', 1500)
-        i = randint(0, 17)
+            self.parent.parent.statusBar().showMessage('Rolled butler root...', 1500)
+        i = randint(0, 5)
         self.liMaidRoot.setCurrentIndex(i)
 
-    def generateStressExplosion(self, hideMessage=False):
-        if not hideMessage:
-            self.parent.parent.statusBar().showMessage('Rolled stress explosion...', 1500)
-        i = randint(0, 17)
-        self.liStress.setCurrentIndex(i)
-
-    def generateMaidPower(self, caller=False, generateSecond=False):
+    def generateButlerQuality(self, caller=False):
         if caller == False:
             caller = self.sender()
-            self.parent.parent.statusBar().showMessage('Rolled maid power...', 1500)
-        if not QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier and not generateSecond:
-            upperLimit = self.liMP.count()
-            desiredStat = caller.statType
-            while True:
-                success = False
-                while True:
-                    i = randint(0, upperLimit - 1)
-                    text = self.liMP.itemText(i)
-                    if text != self.liMP2.currentText():
-                        break
+            self.parent.parent.statusBar().showMessage('Rolled butler special quality...', 1500)
+        i = randint(0, 35)
+        caller.parent.setCurrentIndex(i)
 
-                for item in maidPowerList[desiredStat]:
-                    if item.name == text:
-                        success = True
-                        self.liMP.setCurrentIndex(i)
-                        break
-
-                if success:
-                    break
-
-            self.changedMaidPower(self.liMP)
-        elif self.liMP2.isEnabled():
-            upperLimit = self.liMP2.count()
-            desiredStat = caller.statType
-            while True:
-                success = False
-                while True:
-                    i = randint(0, upperLimit - 1)
-                    text = self.liMP2.itemText(i)
-                    if text != self.liMP.currentText():
-                        break
-
-                for item in maidPowerList[desiredStat]:
-                    if item.name == text:
-                        success = True
-                        self.liMP2.setCurrentIndex(i)
-                        break
-
-                if success:
-                    break
-
-            self.changedMaidPower(self.liMP2)
-
-    def generateSpecialQuality(self, caller=False):
-        onlySecondary = False
-        allowed2Go = True
+    def generateButlerWeapon(self, caller):
         if caller == False:
-            if QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
-                onlySecondary = True
             caller = self.sender()
-            if onlySecondary:
-                if caller.parent.currentIndex() < 18:
-                    allowed2Go = False
-            if allowed2Go:
-                self.parent.parent.statusBar().showMessage('Rolled special quality...', 1500)
-        if allowed2Go:
-            i = -1
-            if not onlySecondary:
-                i = randint(0, 35)
-                caller.parent.setCurrentIndex(i)
-            if i > 17 or i == -1:
-                i = randint(37, 42)
-                caller.parent.setCurrentIndex(i)
+            self.parent.parent.statusBar().showMessage('Rolled weapon...', 1500)
+        while True:
+            i = randint(0, 35)
+            caller.parent.setCurrentIndex(i)
+            if caller.parent.otherWeapon.currentText() == '' or caller.parent.otherWeapon.currentText() != caller.parent.currentText():
+                break
 
     def calculateStats(self):
         stat0 = self.liATH.value() + self.liFirstType.changeList[0] + self.liSecondType.changeList[0]
@@ -579,198 +561,111 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liWIL.sumVal.setText('(' + str(self.stats[5]) + ')')
         self.favor.setText('Favor: ' + str(self.stats[1] * 2))
         self.spirit.setText('Spirit: ' + str(self.stats[5] * 10))
-        highestValue = -1
-        for i in range(len(self.stats)):
-            if highestValue < self.stats[i]:
-                highestValue = self.stats[i]
 
-        highestValueList = []
-        buttonList = [
-         self.bMpATH, self.bMpAFF, self.bMpSKI, self.bMpCNN, self.bMpLCK, self.bMpWIL]
-        for i in range(len(self.stats)):
-            if self.stats[i] == highestValue:
-                buttonList[i].setEnabled(True)
-                highestValueList.append(i)
-            else:
-                buttonList[i].setEnabled(False)
-
-        if self.stats[0] + self.stats[1] + self.stats[2] + self.stats[3] + self.stats[4] + self.stats[5] < 10:
-            self.liMP2.setEnabled(True)
-        else:
-            self.liMP2.setCurrentIndex(-1)
-            self.liMP2.setEnabled(False)
-        self.setMaidPowerComboBox(self.liMP, highestValueList)
-        self.setMaidPowerComboBox(self.liMP2, highestValueList)
-
-    def changedMaidType(self):
+    def changedButlerType(self):
         comboBox = self.sender()
-        obj = maidTypeList[comboBox.currentIndex()]
-        comboBox.desc.setText(obj.descript)
-        comboBox.setToolTip(obj.tooltip)
-        comboBox.changeList = obj.changeList
+        i = comboBox.currentIndex()
+        comboBox.setToolTip(butlerTypeList[i].tooltip)
+        comboBox.changeList = butlerTypeList[i].changeList
+        comboBox.desc.setText(butlerTypeList[i].descript)
         self.calculateStats()
+        comboBox.powerBox.setCurrentIndex(-1)
+        for j in range(6):
+            comboBox.powerBox.removeItem(0)
 
-    def changedMaidPower(self, comboBox=0):
-        if not self.rebuildingMaidPowers:
-            if type(comboBox) is int:
-                comboBox = self.sender()
-            text = comboBox.currentText()
-            found = False
-            for stat in maidPowerList:
-                for item in stat:
-                    if item.name == text:
-                        comboBox.setToolTip(item.descript)
-                        found = True
+        for item in butlerPowerList[i]:
+            comboBox.powerBox.insertItem(100, item.name)
 
-            if comboBox.currentIndex() == -1 or found == False:
-                comboBox.setToolTip('')
+        comboBox.powerBox.setCurrentIndex(-1)
+        self.generateButlerPower(comboBox.powerBox.rollButton)
 
-    def changedSpecialQuailty(self):
+    def changedButlerPower(self):
         comboBox = self.sender()
-        if comboBox.currentIndex() < 36:
-            if not comboBox.currentIndex() == -1:
-                if comboBox.count() > 36:
-                    for i in range(7):
-                        comboBox.removeItem(36)
-
-                obj = specialQualityList[comboBox.currentIndex()]
-                comboBox.setToolTip(obj.descript)
-                if obj.secondaryTable != []:
-                    comboBox.setStyleSheet('color: olive')
-                    comboBox.insertSeparator(36)
-                    for item in reversed(obj.secondaryTable):
-                        comboBox.insertItem(37, item.name)
-
-                    comboBox.previousIndex = comboBox.currentIndex()
-                else:
-                    comboBox.setStyleSheet('color: black')
-            else:
-                comboBox.setStyleSheet('color: black')
-                comboBox.setToolTip('')
+        i = comboBox.currentIndex()
+        j = comboBox.parent.currentIndex()
+        if not comboBox.currentIndex() == -1:
+            comboBox.setToolTip(butlerPowerList[j][i].descript)
         else:
-            comboBox.setStyleSheet('color: black')
-            item = specialQualityList[comboBox.previousIndex].secondaryTable[(comboBox.currentIndex() - 37)]
-            comboBox.setToolTip(item.descript)
+            comboBox.setToolTip('')
 
-    def changedWeapon(self):
-        if not self.liWeapon.currentIndex() == -1:
-            obj = weaponList[self.liWeapon.currentIndex()]
-            self.liWeapon.setToolTip(obj.descript)
+    def changedButlerRoot(self):
+        i = self.liMaidRoot.currentIndex()
+        self.liMaidRoot.setToolTip(butlerRootList[i].descript)
+
+    def changedButlerQuality(self):
+        comboBox = self.sender()
+        i = comboBox.currentIndex()
+        if not i == -1:
+            comboBox.setToolTip(butlerQualityList[i].descript)
         else:
-            self.liWeapon.setToolTip('')
+            comboBox.setToolTip('')
 
-    def changedMaidRoot(self):
-        obj = maidRootList[self.liMaidRoot.currentIndex()]
-        self.liMaidRoot.setToolTip(obj.descript)
+    def changedButlerWeapon(self):
+        comboBox = self.sender()
+        i = comboBox.currentIndex()
+        if not i == -1:
+            comboBox.setToolTip(butlerWeaponList[i].descript)
+        else:
+            comboBox.setToolTip('')
 
-    def changedStressExplosion(self):
-        obj = stressExplosionList[self.liStress.currentIndex()]
-        self.liStress.setToolTip(obj.descript)
-
-    def setMaidPowerComboBox(self, comboBox, highestStats):
-        self.rebuildingMaidPowers = True
-        text = comboBox.itemText(comboBox.currentIndex())
-        for i in range(comboBox.count()):
-            comboBox.removeItem(0)
-
-        for statNumber in highestStats:
-            for item in maidPowerList[statNumber]:
-                comboBox.insertItem(100, item.name)
-
-            comboBox.insertSeparator(100)
-
-        comboBox.removeItem(comboBox.count() - 1)
-        listOfNames = [ comboBox.itemText(i) for i in range(comboBox.count()) ]
-        comboBox.setCurrentIndex(-1)
-        for i in range(len(listOfNames)):
-            if listOfNames[i] == text:
-                comboBox.setCurrentIndex(i)
-
-        self.rebuildingMaidPowers = False
-        self.changedMaidPower(comboBox)
-
-    def setMaidTypeComboBox(self, comboBox):
-        for obj in maidTypeList:
-            comboBox.insertItem(100, obj.name)
-
-        comboBox.setCurrentIndex(-1)
-        comboBox.previousIndex = -1
-
-    def setSpecialQualityComboBox(self, comboBox):
-        for obj in specialQualityList:
-            comboBox.insertItem(100, obj.name)
-
-        comboBox.setCurrentIndex(-1)
-
-    def setWeaponComboBox(self):
-        for obj in weaponList:
-            self.liWeapon.insertItem(100, obj.name)
-
-        self.liWeapon.setCurrentIndex(-1)
-
-    def setMaidRootComboBox(self):
-        for obj in maidRootList:
+    def setButlerRootComboBox(self):
+        for obj in butlerRootList:
             self.liMaidRoot.insertItem(100, obj.name)
 
         self.liMaidRoot.setCurrentIndex(-1)
 
-    def setStressExplosionComboBox(self):
-        for obj in stressExplosionList:
-            self.liStress.insertItem(100, obj.name)
+    def setButlerTypeComboBox(self, comboBox):
+        for obj in butlerTypeList:
+            comboBox.insertItem(100, obj.name)
 
-        self.liStress.setCurrentIndex(-1)
+        comboBox.setCurrentIndex(-1)
 
-    def generateFullMaid(self):
-        self.generateMaidColor(self.bUniColor)
-        self.generateMaidColor(self.bHairColor)
-        self.generateMaidColor(self.bEyeColor)
+    def setButlerQualityComboBox(self, comboBox):
+        for obj in butlerQualityList:
+            comboBox.insertItem(100, obj.name)
+
+        comboBox.setCurrentIndex(-1)
+
+    def setButlerWeaponComboBox(self, comboBox):
+        for obj in butlerWeaponList:
+            comboBox.insertItem(100, obj.name)
+
+        comboBox.setCurrentIndex(-1)
+
+    def generateButler(self):
+        self.generateAge(True)
+        self.generateSuitColor(True)
+        self.generateHairColor(True)
+        self.generateEyeColor(True)
         self.generateAttribute(self.bATH)
         self.generateAttribute(self.bAFF)
         self.generateAttribute(self.bSKI)
         self.generateAttribute(self.bCNN)
-        self.generateAttribute(self.bLCK)
-        self.generateAttribute(self.bWIL)
-        self.generateMaidType(self.bFirstType)
-        self.generateMaidType(self.bSecondType)
-        self.liMP.setCurrentIndex(-1)
-        self.liMP2.setCurrentIndex(-1)
-        onlyButton = None
-        for button in [self.bMpATH, self.bMpAFF, self.bMpSKI, self.bMpCNN, self.bMpLCK, self.bMpWIL]:
-            if button.isEnabled():
-                if onlyButton == None:
-                    onlyButton = button
-                elif onlyButton == 'MORE':
-                    continue
-                else:
-                    onlyButton = 'MORE'
+        self.generateLuckAttribute(True)
+        self.generateWilAttribute(True)
+        self.generateButlerType(self.bFirstType)
+        self.generateButlerType(self.bSecondType)
+        self.generateButlerRoot(True)
+        self.generateButlerQuality(self.bSpec1)
+        self.generateButlerQuality(self.bSpec2)
+        if self.bSpec3.isEnabled():
+            self.generateButlerQuality(self.bSpec3)
+        if self.bSpec4.isEnabled():
+            self.generateButlerQuality(self.bSpec4)
+        if self.bSpec5.isEnabled():
+            self.generateButlerQuality(self.bSpec5)
+        self.generateButlerWeapon(self.bWeap)
+        self.generateButlerWeapon(self.bWeap2)
 
-        if onlyButton != None and onlyButton != 'MORE':
-            self.generateMaidPower(onlyButton)
-            if self.liMP2.isEnabled():
-                self.generateMaidPower(onlyButton, True)
-        self.generateMaidRoot(True)
-        self.generateStressExplosion(True)
-        self.generateSpecialQuality(self.bSpec1)
-        self.generateSpecialQuality(self.bSpec2)
-        if self.liSpec3.isEnabled():
-            self.generateSpecialQuality(self.bSpec3)
-        if self.liSpec4.isEnabled():
-            self.generateSpecialQuality(self.bSpec4)
-        if self.liSpec5.isEnabled():
-            self.generateSpecialQuality(self.bSpec5)
-        if self.liWeapon.isEnabled():
-            self.generateWeapon(True)
-        return
-
-    def saveMaid(self):
-        savePath = QtWidgets.QFileDialog.getSaveFileNameAndFilter(None, 'Save your maid as...', '', 'Text Documents (*.txt);;All files (*.*)')
+    def saveButler(self):
+        savePath = QtWidgets.QFileDialog.getSaveFileNameAndFilter(None, 'Save your butler as...', '', 'Text Documents (*.txt);;All files (*.*)')
         if not savePath[0] == '':
             starSeparator = '-----------------------------------------------------------------------------------------\n'
             printList = []
             printList.append(starSeparator)
             printList.append('Name: ' + self.liName.text() + '\n')
             printList.append('Age: ' + str(self.liAge.value()) + '\n')
-            printList.append('Uniform color: ' + self.liUniColor.text() + '\n')
+            printList.append('Suit color: ' + self.liUniColor.text() + '\n')
             printList.append('Eye color: ' + self.liEyeColor.text() + '\n')
             printList.append('Hair color: ' + self.liHairColor.text() + '\n')
             printList.append(starSeparator)
@@ -784,20 +679,18 @@ class CMaidWidget(QtWidgets.QWidget):
             printList.append(self.favor.text() + '\n')
             printList.append(self.spirit.text() + '\n')
             printList.append(starSeparator)
-            printList.append('Maid types:\n')
+            printList.append('Butler types:\n')
             printList.append(self.liFirstType.currentText() + ': ' + self.liFirstType.toolTip() + '\n')
             printList.append(self.liSecondType.currentText() + ': ' + self.liSecondType.toolTip() + '\n')
             printList.append('\n')
-            printList.append('Maid powers:\n')
+            printList.append('Butler powers:\n')
             printList.append(self.liMP.currentText() + ': ' + self.liMP.toolTip() + '\n')
             if self.liMP2.isEnabled():
                 printList.append(self.liMP2.currentText() + ': ' + self.liMP2.toolTip() + '\n')
             printList.append('\n')
-            printList.append('Maid root: ' + self.liMaidRoot.currentText() + '\n')
+            printList.append('Butler root: ' + self.liMaidRoot.currentText() + '\n')
             printList.append(self.liMaidRoot.toolTip() + '\n')
             printList.append('\n')
-            printList.append('Stress explosion: ' + self.liStress.currentText() + '\n')
-            printList.append(self.liStress.toolTip() + '\n')
             printList.append(starSeparator)
             printList.append('Special quailities:\n')
             printList.append(self.liSpec1.currentText() + ': ' + self.liSpec1.toolTip() + '\n')
@@ -809,9 +702,11 @@ class CMaidWidget(QtWidgets.QWidget):
             if self.liSpec5.isEnabled():
                 printList.append(self.liSpec5.currentText() + ': ' + self.liSpec5.toolTip() + '\n')
             printList.append(starSeparator)
-            if self.liWeapon.isEnabled():
-                printList.append('Weapon: ' + self.liWeapon.currentText() + '\n')
-                printList.append(self.liWeapon.toolTip() + '\n')
+            printList.append('Weapon: ' + self.liWeapon.currentText() + '\n')
+            printList.append(self.liWeapon.toolTip() + '\n')
+            printList.append('\n')
+            printList.append('Weapon 2: ' + self.liWeapon2.currentText() + '\n')
+            printList.append(self.liWeapon2.toolTip() + '\n')
             f = open(savePath[0], 'w+')
             for line in printList:
                 f.write(line)

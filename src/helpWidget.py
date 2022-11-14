@@ -1,6 +1,8 @@
 """
 Widget for the help dock.
 """
+import os.path
+
 from PyQt5 import QtWidgets, QtGui, QtCore
 
 class CHelpWidget(QtWidgets.QWidget):
@@ -17,7 +19,8 @@ class CHelpWidget(QtWidgets.QWidget):
         hlayout = QtWidgets.QHBoxLayout()
         hlayout.setAlignment(QtCore.Qt.AlignCenter)
         self.picture = QtWidgets.QLabel()
-        self.picture.setPixmap(QtGui.QPixmap('ram.png').scaled(360, 360))
+        maid_picture_path = os.path.join(os.path.dirname(__file__), "..", "resources", "ram.png")
+        self.picture.setPixmap(QtGui.QPixmap(maid_picture_path).scaled(360, 360))
         self.picture.setGeometry(0, 0, 360, 360)
         hlayout.addWidget(self.picture)
         self.loVLayoutMain.addLayout(hlayout)
