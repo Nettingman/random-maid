@@ -798,7 +798,7 @@ class CMaidWidget(QtWidgets.QWidget):
         return
 
     def saveMaid(self):
-        savePath = QtWidgets.QFileDialog.getSaveFileNameAndFilter(None, 'Save your maid as...', '', 'Text Documents (*.txt);;All files (*.*)')
+        savePath = QtWidgets.QFileDialog.getSaveFileName(None, 'Save your maid as...', '', 'Text Documents (*.txt);;All files (*.*)')
         if not savePath[0] == '':
             starSeparator = '-----------------------------------------------------------------------------------------\n'
             printList = []

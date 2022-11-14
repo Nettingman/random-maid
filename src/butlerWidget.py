@@ -675,7 +675,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.generateButlerWeapon(self.bWeap2)
 
     def saveButler(self):
-        savePath = QtWidgets.QFileDialog.getSaveFileNameAndFilter(None, 'Save your butler as...', '', 'Text Documents (*.txt);;All files (*.*)')
+        savePath = QtWidgets.QFileDialog.getSaveFileName(None, 'Save your butler as...', '', 'Text Documents (*.txt);;All files (*.*)')
         if not savePath[0] == '':
             starSeparator = '-----------------------------------------------------------------------------------------\n'
             printList = []
