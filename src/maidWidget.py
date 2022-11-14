@@ -18,13 +18,16 @@ class CMaidWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.parent = parent
-        self.stats = [
-         0, 0, 0, 0, 0, 0]
+
+        self.stats = [0, 0, 0, 0, 0, 0]
         self.rebuildingMaidPowers = False
+
         self.loVLayoutMain = QtWidgets.QVBoxLayout()
         self.loHLayoutMain = QtWidgets.QHBoxLayout()
+
         self.gbBasic = QtWidgets.QGroupBox('Basics', self)
         self.loGbBasic = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Name: ')
         hLayout.addWidget(textLabel)
@@ -33,6 +36,7 @@ class CMaidWidget(QtWidgets.QWidget):
         hLayout.addWidget(self.liName)
         hLayout.addStretch(1)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Age:   ')
         hLayout.addWidget(textLabel)
@@ -42,6 +46,7 @@ class CMaidWidget(QtWidgets.QWidget):
         hLayout.addWidget(self.liAge)
         hLayout.addStretch(1)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Uniform color: ')
         hLayout.addWidget(textLabel)
@@ -53,6 +58,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bUniColor.setFixedWidth(50)
         hLayout.addWidget(self.bUniColor)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Eye color: ')
         hLayout.addWidget(textLabel)
@@ -64,6 +70,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bEyeColor.parent = self.liEyeColor
         hLayout.addWidget(self.bEyeColor)
         self.loGbBasic.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Hair color: ')
         hLayout.addWidget(textLabel)
@@ -80,6 +87,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loH1.addWidget(self.gbBasic)
         self.gbMaidType = QtWidgets.QGroupBox('Maid Type', self)
         self.loGbMaidType = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('First: ')
         hLayout.addWidget(textLabel)
@@ -92,6 +100,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bFirstType.parent = self.liFirstType
         hLayout.addWidget(self.bFirstType)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.descFirst = QtWidgets.QLabel('')
         self.descFirst.setWordWrap(True)
@@ -99,6 +108,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liFirstType.changeList = [0, 0, 0, 0, 0, 0]
         hLayout.addWidget(self.descFirst)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Second: ')
         hLayout.addWidget(textLabel)
@@ -111,6 +121,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bSecondType.parent = self.liSecondType
         hLayout.addWidget(self.bSecondType)
         self.loGbMaidType.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.descSecond = QtWidgets.QLabel('')
         self.descSecond.setWordWrap(True)
@@ -123,6 +134,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.loH1.addWidget(self.gbMaidType)
         self.gbAttri = QtWidgets.QGroupBox('Attributes', self)
         self.loGbAttri = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('ATH:')
         textLabel.setToolTip('Athletics: Physical ability, combat ability.')
@@ -143,6 +155,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liATH.mpButton = self.bMpATH
         hLayout.addWidget(self.bMpATH, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('AFF:')
         textLabel.setToolTip('Affection: How good are you at forming bonds with your master and the other maids?')
@@ -163,6 +176,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liAFF.mpButton = self.bMpAFF
         hLayout.addWidget(self.bMpAFF, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('SKI:')
         textLabel.setToolTip('Skill: How good are you at your maid duties?')
@@ -183,6 +197,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liSKI.mpButton = self.bMpSKI
         hLayout.addWidget(self.bMpSKI, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('CNN:')
         textLabel.setToolTip('Cunning: How capable are you at tricking enemies and other maids, and deceiving the master?')
@@ -203,6 +218,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liCNN.mpButton = self.bMpCNN
         hLayout.addWidget(self.bMpCNN, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('LCK:')
         textLabel.setToolTip('Luck: Just how lucky are you?')
@@ -223,6 +239,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liLCK.mpButton = self.bMpLCK
         hLayout.addWidget(self.bMpLCK, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('WIL:')
         textLabel.setToolTip('Will: How positive and constructive is your thinking?')
@@ -243,11 +260,13 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liWIL.mpButton = self.bMpWIL
         hLayout.addWidget(self.bMpWIL, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         self.gbAttri.setLayout(self.loGbAttri)
         self.loH2 = QtWidgets.QHBoxLayout()
         self.loH2.addWidget(self.gbAttri)
         self.gbEtc = QtWidgets.QGroupBox('Etcetera', self)
         self.loGbEtc = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Maid root: ')
         hLayout.addWidget(textLabel)
@@ -260,6 +279,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bMaidRoot.setFixedWidth(50)
         hLayout.addWidget(self.bMaidRoot)
         self.loGbEtc.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Stress explosion: ')
         hLayout.addWidget(textLabel)
@@ -272,6 +292,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bStress.setFixedWidth(50)
         hLayout.addWidget(self.bStress)
         self.loGbEtc.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Maid power: ')
         hLayout.addWidget(textLabel)
@@ -279,6 +300,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liMP.setFixedWidth(150)
         hLayout.addWidget(self.liMP)
         self.loGbEtc.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Maid power 2: ')
         hLayout.addWidget(textLabel)
@@ -286,14 +308,17 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liMP2.setFixedWidth(150)
         hLayout.addWidget(self.liMP2)
         self.loGbEtc.addLayout(hLayout)
+
         self.favor = QtWidgets.QLabel('Favor: 0')
         self.spirit = QtWidgets.QLabel('Spirit: 0')
         self.loGbEtc.addWidget(self.favor)
         self.loGbEtc.addWidget(self.spirit)
+
         self.gbEtc.setLayout(self.loGbEtc)
         self.loH2.addWidget(self.gbEtc)
         self.gbSpec = QtWidgets.QGroupBox('Special Qualities', self)
         self.loGbSpec = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec1 = QtWidgets.QComboBox()
         self.setSpecialQualityComboBox(self.liSpec1)
@@ -304,6 +329,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bSpec1.parent = self.liSpec1
         hLayout.addWidget(self.bSpec1, 0, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec2 = QtWidgets.QComboBox()
         self.setSpecialQualityComboBox(self.liSpec2)
@@ -314,6 +340,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.bSpec2.parent = self.liSpec2
         hLayout.addWidget(self.bSpec2, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec3 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec3, 1, QtCore.Qt.AlignRight)
@@ -328,6 +355,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec3.box = self.liSpec3
         hLayout.addWidget(self.bSpec3, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec4 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec4, 1, QtCore.Qt.AlignRight)
@@ -342,6 +370,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec4.box = self.liSpec4
         hLayout.addWidget(self.bSpec4, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec5 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec5, 1, QtCore.Qt.AlignRight)
@@ -356,8 +385,10 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbSpec5.box = self.liSpec5
         hLayout.addWidget(self.bSpec5, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         self.gbSpec.setLayout(self.loGbSpec)
         self.gbSpec.setFixedWidth(250)
+
         self.loH3 = QtWidgets.QHBoxLayout()
         self.loH3.addWidget(self.gbSpec)
         self.gbWeap = QtWidgets.QGroupBox('Weapon', self)
@@ -374,6 +405,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.cbEnableWeapon.box = self.liWeapon
         self.gbWeap.setLayout(self.loGbWeap)
         self.loH3.addWidget(self.gbWeap)
+
         self.gbSave = QtWidgets.QGroupBox('Generate and save', self)
         self.loGbSave = QtWidgets.QVBoxLayout()
         self.bRollAll = QtWidgets.QPushButton('GENERATE\nMAID', self)
@@ -383,11 +415,13 @@ class CMaidWidget(QtWidgets.QWidget):
         self.gbSave.setLayout(self.loGbSave)
         self.gbSave.setFixedWidth(120)
         self.loH3.addWidget(self.gbSave)
+
         self.loVLayoutMain.addLayout(self.loH1)
         self.loVLayoutMain.addLayout(self.loH2)
         self.loVLayoutMain.addLayout(self.loH3)
         self.loHLayoutMain.addLayout(self.loVLayoutMain)
         self.setLayout(self.loHLayoutMain)
+
         self.setEnabilities()
         self.setMaidPowerComboBox(self.liMP, [0, 1, 2, 3, 4, 5])
         self.setMaidPowerComboBox(self.liMP2, [0, 1, 2, 3, 4, 5])

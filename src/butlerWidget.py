@@ -154,6 +154,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bATH.parent = self.liATH
         hLayout.addWidget(self.bATH, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('AFF:')
         textLabel.setToolTip('Affection: How good are you at forming bonds with your master and the other maids?')
@@ -169,6 +170,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bAFF.parent = self.liAFF
         hLayout.addWidget(self.bAFF, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('SKI:')
         textLabel.setToolTip('Skill: How good are you at your maid duties?')
@@ -184,6 +186,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bSKI.parent = self.liSKI
         hLayout.addWidget(self.bSKI, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('CNN:')
         textLabel.setToolTip('Cunning: How capable are you at tricking enemies and other maids, and deceiving the master?')
@@ -199,6 +202,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bCNN.parent = self.liCNN
         hLayout.addWidget(self.bCNN, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('LCK:')
         textLabel.setToolTip('Luck: Just how lucky are you?')
@@ -214,6 +218,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bLCK.parent = self.liLCK
         hLayout.addWidget(self.bLCK, 1, QtCore.Qt.AlignRight)
         self.loGbAttri.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('WIL:')
         textLabel.setToolTip('Will: How positive and constructive is your thinking?')
@@ -234,6 +239,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.loH2.addWidget(self.gbAttri)
         self.gbEtc = QtWidgets.QGroupBox('Etcetera', self)
         self.loGbEtc = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Butler root: ')
         hLayout.addWidget(textLabel)
@@ -246,6 +252,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bMaidRoot.setFixedWidth(50)
         hLayout.addWidget(self.bMaidRoot)
         self.loGbEtc.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Butler power: ')
         hLayout.addWidget(textLabel)
@@ -260,6 +267,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bButlerPower.setFixedWidth(50)
         hLayout.addWidget(self.bButlerPower)
         self.loGbEtc.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('Butler power 2: ')
         hLayout.addWidget(textLabel)
@@ -284,6 +292,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.loH2.addWidget(self.gbEtc)
         self.gbSpec = QtWidgets.QGroupBox('Special Qualities', self)
         self.loGbSpec = QtWidgets.QVBoxLayout()
+
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec1 = QtWidgets.QComboBox()
         self.setButlerQualityComboBox(self.liSpec1)
@@ -294,6 +303,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bSpec1.parent = self.liSpec1
         hLayout.addWidget(self.bSpec1, 0, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.liSpec2 = QtWidgets.QComboBox()
         self.setButlerQualityComboBox(self.liSpec2)
@@ -304,6 +314,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.bSpec2.parent = self.liSpec2
         hLayout.addWidget(self.bSpec2, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec3 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec3, 1, QtCore.Qt.AlignRight)
@@ -318,6 +329,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.cbSpec3.box = self.liSpec3
         hLayout.addWidget(self.bSpec3, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec4 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec4, 1, QtCore.Qt.AlignRight)
@@ -332,6 +344,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.cbSpec4.box = self.liSpec4
         hLayout.addWidget(self.bSpec4, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         hLayout = QtWidgets.QHBoxLayout()
         self.cbSpec5 = QtWidgets.QCheckBox()
         hLayout.addWidget(self.cbSpec5, 1, QtCore.Qt.AlignRight)
@@ -346,6 +359,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.cbSpec5.box = self.liSpec5
         hLayout.addWidget(self.bSpec5, 1, QtCore.Qt.AlignRight)
         self.loGbSpec.addLayout(hLayout)
+
         self.gbSpec.setLayout(self.loGbSpec)
         self.gbSpec.setFixedWidth(250)
         self.loH3 = QtWidgets.QHBoxLayout()
@@ -369,6 +383,7 @@ class CButlerWidget(QtWidgets.QWidget):
         self.liWeapon2.otherWeapon = self.liWeapon
         self.gbWeap.setLayout(self.loGbWeap)
         self.loH3.addWidget(self.gbWeap)
+
         self.gbSave = QtWidgets.QGroupBox('Generate and save', self)
         self.loGbSave = QtWidgets.QVBoxLayout()
         self.bRollAll = QtWidgets.QPushButton('GENERATE\nBUTLER', self)
@@ -378,11 +393,13 @@ class CButlerWidget(QtWidgets.QWidget):
         self.gbSave.setLayout(self.loGbSave)
         self.gbSave.setFixedWidth(120)
         self.loH3.addWidget(self.gbSave)
+
         self.loVLayoutMain.addLayout(self.loH1)
         self.loVLayoutMain.addLayout(self.loH2)
         self.loVLayoutMain.addLayout(self.loH3)
         self.loHLayoutMain.addLayout(self.loVLayoutMain)
         self.setLayout(self.loHLayoutMain)
+
         self.setEnabilities()
         self.cbSpec3.clicked.connect(self.setEnabilities)
         self.cbSpec4.clicked.connect(self.setEnabilities)
