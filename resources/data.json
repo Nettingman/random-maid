@@ -4,7 +4,27 @@
       "rare" : [ "Red", "Blue", "Yellow", "White", "Black", "Transparent/Rainbow" ],
       "double_chance" : [ "Purple", "Orange", "Pink", "Brown", "Vermillion", "Green", "Sky blue", "Navy", "Indigo",
       "Cream", "Beige", "Gold", "Gray", "Silver", "Metallic"]
-    }
+    },
+    "stress_explosions" : [
+      ["Alcohol/Drugs", "You drink alcohol (or drugs) until you can't remember or care."],
+      ["Stealing", "You steal valuables from the mansion or from other maids."],
+      ["Violence", "You unleash violence on the other maids and the master."],
+      ["Gambling", "You use every penny you have for gambling."],
+      ["Racing", "You get into whatever car/vehicle is handy and go for a drive at at least twice the speed limit."],
+      ["Teasing", "You start persistently tormenting the other maids."],
+      ["Mischief", "You start playing troublesome tricks on the master and the other maids."],
+      ["Running Away", "You run away from the mansion."],
+      ["Complaining", "You start incessantly complaining to the master and other maids."],
+      ["Seclusion", "You go into your room and won't come out, not even for food."],
+      ["Crying", "You start crying. There's no need for an Affection check for this."],
+      ["Rampage", "You use anything you can lay your hands on to run around destroying things around the mansion."],
+      ["Shopping", "You go crazy spending your money on shopping."],
+      ["Sleep", "You spend all day sleeping."],
+      ["Binge", "You go crazy eating."],
+      ["Prayer", "You escape through religion, relentlessly praying to heaven for protection."],
+      ["Spoiled Child", "You act like a spoiled child, making demands of the master."],
+      ["Player Choice", "Let the player to your left decide for you."]
+    ]
   },
 
   "maid" : {

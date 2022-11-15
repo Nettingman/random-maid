@@ -4,10 +4,9 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import masterPowers, stressExplosions
+from .data import masterPowers
 
 masterPowerList = masterPowers.returnMasterPowerList()
-stressExplosionList = stressExplosions.returnStressExplosionList()
 
 class CMasterWidget(QtWidgets.QWidget):
 
@@ -520,8 +519,7 @@ class CMasterWidget(QtWidgets.QWidget):
         comboBox.setToolTip(powerOfMaster.descript)
 
     def changedStressExplosion(self):
-        obj = stressExplosionList[self.liStress.currentIndex()]
-        self.liStress.setToolTip(obj.descript)
+        self.liStress.setToolTip(self.data_reader.data["common"]["stress_explosions"][self.liStress.currentIndex()][1])
 
     def changedFavoriteMaidType(self):
         elem = self.data_reader.data["maid"]["types"][self.liFavorite.currentIndex()]
@@ -578,8 +576,8 @@ class CMasterWidget(QtWidgets.QWidget):
         comboBox.setCurrentIndex(-1)
 
     def setStressExplosionComboBox(self):
-        for obj in stressExplosionList:
-            self.liStress.insertItem(100, obj.name)
+        for elem in self.data_reader.data["common"]["stress_explosions"]:
+            self.liStress.insertItem(100, elem[0])
 
         self.liStress.setCurrentIndex(-1)
 

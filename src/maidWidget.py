@@ -4,10 +4,9 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import maidRoots, stressExplosions, maidPowers
+from .data import maidRoots, maidPowers
 
 maidRootList = maidRoots.returnMaidRootList()
-stressExplosionList = stressExplosions.returnStressExplosionList()
 maidPowerList = maidPowers.returnMaidPowerList()
 
 class CMaidWidget(QtWidgets.QWidget):
@@ -696,8 +695,7 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liMaidRoot.setToolTip(obj.descript)
 
     def changedStressExplosion(self):
-        obj = stressExplosionList[self.liStress.currentIndex()]
-        self.liStress.setToolTip(obj.descript)
+        self.liStress.setToolTip(self.data_reader.data["common"]["stress_explosions"][self.liStress.currentIndex()][1])
 
     def setMaidPowerComboBox(self, comboBox, highestStats):
         self.rebuildingMaidPowers = True
@@ -747,8 +745,8 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liMaidRoot.setCurrentIndex(-1)
 
     def setStressExplosionComboBox(self):
-        for obj in stressExplosionList:
-            self.liStress.insertItem(100, obj.name)
+        for elem in self.data_reader.data["common"]["stress_explosions"]:
+            self.liStress.insertItem(100, elem[0])
 
         self.liStress.setCurrentIndex(-1)
 
