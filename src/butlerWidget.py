@@ -4,11 +4,8 @@ Widget for the random maid dock.
 
 from random import randint
 from math import floor
-from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import butlerPowers, butlerRoots
+from PyQt5 import QtWidgets, QtCore
 
-butlerPowerList = butlerPowers.returnButlerPowerList()
-butlerRootList = butlerRoots.returnButlerRootList()
 
 class CButlerWidget(QtWidgets.QWidget):
 
@@ -185,7 +182,8 @@ class CButlerWidget(QtWidgets.QWidget):
 
         hLayout = QtWidgets.QHBoxLayout()
         textLabel = QtWidgets.QLabel('CNN:')
-        textLabel.setToolTip('Cunning: How capable are you at tricking enemies and other maids, and deceiving the master?')
+        textLabel.setToolTip(
+            'Cunning: How capable are you at tricking enemies and other maids, and deceiving the master?')
         hLayout.addWidget(textLabel, 1, QtCore.Qt.AlignRight)
         self.liCNN = QtWidgets.QSpinBox()
         self.liCNN.setFixedWidth(35)
@@ -574,8 +572,8 @@ class CButlerWidget(QtWidgets.QWidget):
         for j in range(6):
             comboBox.powerBox.removeItem(0)
 
-        for item in butlerPowerList[ii]:
-            comboBox.powerBox.insertItem(100, item.name)
+        for item in self.data_reader.data["butler"]["powers"][ii]:
+            comboBox.powerBox.insertItem(100, item[0])
 
         comboBox.powerBox.setCurrentIndex(-1)
         self.generateButlerPower(comboBox.powerBox.rollButton)
@@ -585,13 +583,13 @@ class CButlerWidget(QtWidgets.QWidget):
         i = comboBox.currentIndex()
         j = comboBox.parent.currentIndex()
         if not comboBox.currentIndex() == -1:
-            comboBox.setToolTip(butlerPowerList[j][i].descript)
+            comboBox.setToolTip(self.data_reader.data["butler"]["powers"][j][i][1])
         else:
             comboBox.setToolTip('')
 
     def changedButlerRoot(self):
         i = self.liMaidRoot.currentIndex()
-        self.liMaidRoot.setToolTip(butlerRootList[i].descript)
+        self.liMaidRoot.setToolTip(self.data_reader.data["butler"]["roots"][i][1])
 
     def changedButlerQuality(self):
         comboBox = self.sender()
@@ -610,8 +608,8 @@ class CButlerWidget(QtWidgets.QWidget):
             comboBox.setToolTip('')
 
     def setButlerRootComboBox(self):
-        for obj in butlerRootList:
-            self.liMaidRoot.insertItem(100, obj.name)
+        for elem in self.data_reader.data["butler"]["roots"]:
+            self.liMaidRoot.insertItem(100, elem[0])
 
         self.liMaidRoot.setCurrentIndex(-1)
 
@@ -659,7 +657,8 @@ class CButlerWidget(QtWidgets.QWidget):
         self.generateButlerWeapon(self.bWeap2)
 
     def saveButler(self):
-        savePath = QtWidgets.QFileDialog.getSaveFileName(None, 'Save your butler as...', '', 'Text Documents (*.txt);;All files (*.*)')
+        savePath = QtWidgets.QFileDialog.getSaveFileName(None, 'Save your butler as...', '',
+                                                         'Text Documents (*.txt);;All files (*.*)')
         if not savePath[0] == '':
             starSeparator = '-----------------------------------------------------------------------------------------\n'
             printList = []
