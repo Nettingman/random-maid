@@ -255,6 +255,76 @@
               ["Mutant", "You've suffered some kind of strange mutation."]
         ]
       ]
+    ],
+    "powers" : [
+      [
+        ["Super Evasion", "In exchange for 1d6 Stress, you can completely avoid a single attack."],
+        ["Iron Wall", "You can use your Athletics attribute to defend up to two other characters."],
+        ["Trespass", "You can take 1d6 Stress to intrude on a battle, love scene, etc. You can also butt in after the action has ended, and this can even work when someone is using World For Two."],
+        ["Weapon From Nowhere", "You can pull your weapon out seemingly from nowhere, and get in a surprise attack. If you make a surprise attack, you get to make an attack roll without the target getting to make an opposed roll."],
+        ["Giant Weapon", "You can attack with a giant weapon. (+1 to Athletics for attacking)."],
+        ["Ultimate Retort", "You can blow off an opponent completely by delivering a good retort (GM decides). You can make it impossible to defend against this by taking 2 Stress. (This must be role-played)."]
+      ],
+      [
+        ["Maiden's Tears", "By taking 2D6 Stress, you can make a request that can't be refused. (This must be role-played)."],
+        ["World for Two", "By taking 1D6 Stress, you can create a 'world' for you and one other person, where for 5 minutes no one else can intrude"],
+        ["Power of Friendship", "You can take 1D6 Stress in order to remove 2D6 Stress from someone else."],
+        ["Cooked With Love", "When someone eats food you've prepared, they lose 1D6 Stress."],
+        ["Windows of the Soul", "You understand the master's feelings better than anyone, and can offer careful help. (Add 2 to Favor gained)."],
+        ["Passionate Gaze", "With just a glance, you can ingratiate yourself with the master, taking 1D6 Stress to gain 1D3 Favor."]
+      ],
+      [
+        ["Lock Picking", "You can enter any room whenever you feel like. This works even when someone is using World for Two."],
+        ["Stalking", "When you're following someone, there's no chance for them to detect you. Don't even bother rolling dice."],
+        ["Lie Detector", "By taking 1 Stress you can make other players or the master admit if they've lied."],
+        ["Ultimate Menu", "Add +1 to your Skill for the purposes of cooking."],
+        ["Instant Cleaning", "Add +1 to your Skill for the purposes of doing cleaning."],
+        ["4-D Dress", "You can produce anything in the mansion from within your maid uniform."]
+      ],
+      [
+        ["Punishment", "When other maids make mistakes, you can gain the right to punish them, without them having a chance to make an opposed roll."],
+        ["Instant Restraint", "If you win a roll of Cunning Vs. Athletics, you can restrain someone from doing something indecent."],
+        ["Coercion", "If you win a roll of Cunning Vs. Athletics, you can completely damage or tear off someone's clothes, even 'accidentally'."],
+        ["Trap", "Even if you aren't there at the time, you can have a trap prepared in advance during a battle."],
+        ["Fake Crying", "You can use fake frying to use your Cunning for what would normally be an Affection roll. (This must be role-played)."],
+        ["Mockery", "When someone is taking Stress points, you can mock them and cause them to gain an additional 2 Stress points. (This must be roleplayed)."]
+      ],
+      [
+        ["Karma", "You can use your Luck to dodge an attack, and if you roll a 10 or higher you cause twice as much Stress to the opponent."],
+        ["Saw It", "You can declare that you've seen something happening in the mansion; you can decide the timing too."],
+        ["Teleport", "You can go just about anywhere in the mansion instantly."],
+        ["Escape", "You can completely flee from a battle without taking any Stress."],
+        ["Foreboding", "You can tell when something dangerous is coming."],
+        ["Chance Meeting", "By taking 2 points of Stress, you can have an NPC that's just showing up for the first time be an acquaintance from some time before."]
+      ],
+      [
+        ["Immune to Pain", "During a battle, even if you're sent flying, you don't take any Stress. Outside of battle, however, you can still take Stress points like usual."],
+        ["Crisis Adrenaline", "You can spend 1D6 points of Favor to add an Athletics roll to your Stress. You cannot use this to deliberately avoid the natural removal of Stress points."],
+        ["Persistence", "Whenever you take Stress, automatically reduce the amount by 1"],
+        ["Tenacity", "Even after being defeated in battle, you can take 2 Stress to get to your feet."],
+        ["Hard Work", "Your relentless hard work pays off in the form of a +3 bonus to the end result (not the attribute or die roll) of Skill rolls."],
+        ["Absolute Maid", "You are the very epitome of a maid, and you take no penalties when not in full uniform."]
+      ]
+    ],
+    "roots": [
+      ["Debts", "Your family wound up with massive debts, and you found yourself coming to work at the mansion as repayment."],
+      ["Slave", "You are a slave, and have no choice about your line of work."],
+      ["Mistress", "Although you appear to be a maid, it would be more accurate to call you the master's lover."],
+      ["Revenge", "The master is your hated enemy, and you are infiltrating his mansion in order to extract revenge."],
+      ["Orphan", "You are an orphan adopted by the master or his parents."],
+      ["Illegitimate Child", "You are an illegitimate child. From a legal standpoint you're no different from the master."],
+      ["Hereditary Maid", "You were born into a family that has served the mansion for generations."],
+      ["Self Punishment", "In order to punish yourself for your inexperience or sins, you have taken up the job of a maid."],
+      ["Unrequited Love", "Following your one-sided love of the master, you have come here."],
+      ["Business", "You are a maid because you want the wages. And that's about it."],
+      ["Infiltrator", "You are a member of an organization that opposes the master, and you have been sent to spy on or possibly even assassinate him."],
+      ["Loyalty", "You feel great loyalty to the master."],
+      ["Childhood Friend", "As the master's childhood friend, you've used your influence to get here."],
+      ["Admirer of Maids", "You have long admired maids, and through much hard work you've finally become one yourself."],
+      ["Returning a Favor", "The master did a great service to you, and you have become a maid in order to repay him."],
+      ["Distant Relative", "Although you are only distantly related to the master, your parents have put you in his care."],
+      ["Bridal Training", "You became a maid in order to prepare yourself to become an ideal bride some day."],
+      ["Who Knows?", "You're really not quite sure how you wound up becoming a maid."]
     ]
   },
 

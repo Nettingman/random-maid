@@ -3,11 +3,7 @@ Widget for the random maid dock.
 """
 from random import randint
 from math import floor
-from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import maidRoots, maidPowers
-
-maidRootList = maidRoots.returnMaidRootList()
-maidPowerList = maidPowers.returnMaidPowerList()
+from PyQt5 import QtWidgets, QtCore
 
 class CMaidWidget(QtWidgets.QWidget):
 
@@ -537,8 +533,8 @@ class CMaidWidget(QtWidgets.QWidget):
                     if text != self.liMP2.currentText():
                         break
 
-                for item in maidPowerList[desiredStat]:
-                    if item.name == text:
+                for elem in self.data_reader.data["maid"]["powers"][desiredStat]:
+                    if elem[0] == text:
                         success = True
                         self.liMP.setCurrentIndex(i)
                         break
@@ -558,8 +554,8 @@ class CMaidWidget(QtWidgets.QWidget):
                     if text != self.liMP.currentText():
                         break
 
-                for item in maidPowerList[desiredStat]:
-                    if item.name == text:
+                for elem in self.data_reader.data["maid"]["powers"][desiredStat]:
+                    if elem[0] == text:
                         success = True
                         self.liMP2.setCurrentIndex(i)
                         break
@@ -647,10 +643,10 @@ class CMaidWidget(QtWidgets.QWidget):
                 comboBox = self.sender()
             text = comboBox.currentText()
             found = False
-            for stat in maidPowerList:
-                for item in stat:
-                    if item.name == text:
-                        comboBox.setToolTip(item.descript)
+            for stat in self.data_reader.data["maid"]["powers"]:
+                for elem in stat:
+                    if elem[0] == text:
+                        comboBox.setToolTip(elem[1])
                         found = True
 
             if comboBox.currentIndex() == -1 or found == False:
@@ -670,7 +666,7 @@ class CMaidWidget(QtWidgets.QWidget):
                     comboBox.setStyleSheet('color: olive')
                     comboBox.insertSeparator(36)
                     for item in reversed(elem[2]):
-                        comboBox.insertItem(37, item.name)
+                        comboBox.insertItem(37, item[0])
 
                     comboBox.previousIndex = comboBox.currentIndex()
                 else:
@@ -681,7 +677,7 @@ class CMaidWidget(QtWidgets.QWidget):
         else:
             comboBox.setStyleSheet('color: black')
             item = self.data_reader.data["maid"]["qualities"][comboBox.previousIndex][2][(comboBox.currentIndex() - 37)]
-            comboBox.setToolTip(item.descript)
+            comboBox.setToolTip(item[1])
 
     def changedWeapon(self):
         if not self.liWeapon.currentIndex() == -1:
@@ -691,8 +687,7 @@ class CMaidWidget(QtWidgets.QWidget):
             self.liWeapon.setToolTip('')
 
     def changedMaidRoot(self):
-        obj = maidRootList[self.liMaidRoot.currentIndex()]
-        self.liMaidRoot.setToolTip(obj.descript)
+        self.liMaidRoot.setToolTip(self.data_reader.data["maid"]["roots"][self.liMaidRoot.currentIndex()][1])
 
     def changedStressExplosion(self):
         self.liStress.setToolTip(self.data_reader.data["common"]["stress_explosions"][self.liStress.currentIndex()][1])
@@ -704,8 +699,8 @@ class CMaidWidget(QtWidgets.QWidget):
             comboBox.removeItem(0)
 
         for statNumber in highestStats:
-            for item in maidPowerList[statNumber]:
-                comboBox.insertItem(100, item.name)
+            for elem in self.data_reader.data["maid"]["powers"][statNumber]:
+                comboBox.insertItem(100, elem[0])
 
             comboBox.insertSeparator(100)
 
@@ -739,8 +734,8 @@ class CMaidWidget(QtWidgets.QWidget):
         self.liWeapon.setCurrentIndex(-1)
 
     def setMaidRootComboBox(self):
-        for obj in maidRootList:
-            self.liMaidRoot.insertItem(100, obj.name)
+        for elem in self.data_reader.data["maid"]["roots"]:
+            self.liMaidRoot.insertItem(100, elem[0])
 
         self.liMaidRoot.setCurrentIndex(-1)
 
