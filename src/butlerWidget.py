@@ -5,7 +5,7 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import colors, butlerTypes, butlerPowers, butlerRoots, butlerQualities, butlerWeapons
+from .data import butlerTypes, butlerPowers, butlerRoots, butlerQualities, butlerWeapons
 
 butlerTypeList = butlerTypes.returnButlerTypeList()
 butlerPowerList = butlerPowers.returnButlerPowerList()
@@ -17,8 +17,9 @@ hairColorList = ['Black', 'Gray', 'Blonde', 'Silver', 'White']
 
 class CButlerWidget(QtWidgets.QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, data_reader, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
+        self.data_reader = data_reader
         self.parent = parent
 
         self.stats = [0, 0, 0, 0, 0, 0]
@@ -467,9 +468,9 @@ class CButlerWidget(QtWidgets.QWidget):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
         i = randint(0, 5)
-        color = []
+
         if i == 5:
-            color = colors.getColor()
+            color = self.data_reader.get_random_color()
         else:
             color = suitColorList[i]
         self.liUniColor.setText(color)
@@ -478,9 +479,9 @@ class CButlerWidget(QtWidgets.QWidget):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
         i = randint(0, 5)
-        color = []
+
         if i == 5:
-            color = colors.getColor()
+            color = self.data_reader.get_random_color()
         else:
             color = hairColorList[i]
         self.liHairColor.setText(color)
@@ -488,8 +489,7 @@ class CButlerWidget(QtWidgets.QWidget):
     def generateEyeColor(self, hideMessage=False):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        color = colors.getColor()
-        self.liEyeColor.setText(color)
+        self.liEyeColor.setText(self.data_reader.get_random_color())
 
     def generateAttribute(self, caller=False):
         if caller == False:

@@ -1,0 +1,18 @@
+{
+  "common" :  {
+    "colors" : {
+      "rare" : [ "Red", "Blue", "Yellow", "White", "Black", "Transparent/Rainbow" ],
+      "double_chance" : [ "Purple", "Orange", "Pink", "Brown", "Vermillion", "Green", "Sky blue", "Navy", "Indigo",
+      "Cream", "Beige", "Gold", "Gray", "Silver", "Metallic"]
+    }
+  },
+  "maid" : {
+
+  },
+  "butler" : {
+
+  },
+  "master" : {
+
+  }
+}

@@ -10,10 +10,11 @@ from .maidWidget import CMaidWidget
 from .helpWidget import CHelpWidget
 from .masterWidget import CMasterWidget
 from .butlerWidget import CButlerWidget
+from .modules.data_reader import MaidDataReader
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     """ Main window for the application. """
-    def __init__(self):
+    def __init__(self, data_reader):
         QtWidgets.QMainWindow.__init__(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.setWindowTitle('RMG - MaidRPG random generator')
@@ -37,7 +38,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         titleWidget = QtWidgets.QWidget()
         self.maidDock.setTitleBarWidget(titleWidget)
 
-        self.maidWidget = CMaidWidget(self.maidDock)
+        self.maidWidget = CMaidWidget(data_reader, self.maidDock)
         self.maidDock.setWidget(self.maidWidget)
         self.addDockWidget(QtCore.Qt.TopDockWidgetArea, self.maidDock)
 
@@ -49,7 +50,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         titleWidget = QtWidgets.QWidget()
         self.butlerDock.setTitleBarWidget(titleWidget)
 
-        self.butlerWidget = CButlerWidget(self.butlerDock)
+        self.butlerWidget = CButlerWidget(data_reader, self.butlerDock)
         self.butlerDock.setWidget(self.butlerWidget)
         self.addDockWidget(QtCore.Qt.TopDockWidgetArea, self.butlerDock)
 
@@ -61,7 +62,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         titleWidgetMaster = QtWidgets.QWidget()
         self.masterDock.setTitleBarWidget(titleWidgetMaster)
 
-        self.masterWidget = CMasterWidget(self.masterDock)
+        self.masterWidget = CMasterWidget(data_reader, self.masterDock)
         self.masterDock.setWidget(self.masterWidget)
         self.addDockWidget(QtCore.Qt.TopDockWidgetArea, self.masterDock)
 
@@ -111,9 +112,10 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
 
 def main(argv):
+    data_reader = MaidDataReader()
     qt_args = [argv[0], '-style', 'Fusion'] + argv[1:]
     app = QtWidgets.QApplication(qt_args)
-    main_window = ApplicationWindow()
+    main_window = ApplicationWindow(data_reader)
     main_window.show()
     sys.exit(app.exec_())
 

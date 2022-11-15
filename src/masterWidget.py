@@ -4,7 +4,7 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import colors, masterType, masterPowers, maidTypes, stressExplosions, masterSpecialQualities, specialQualities
+from .data import masterType, masterPowers, maidTypes, stressExplosions, masterSpecialQualities, specialQualities
 
 masterTypeList = masterType.returnMasterTypeList()
 masterPowerList = masterPowers.returnMasterPowerList()
@@ -25,8 +25,9 @@ traumaList = [
 
 class CMasterWidget(QtWidgets.QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, data_reader, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
+        self.data_reader = data_reader
         self.parent = parent
 
         self.stats = [0, 0, 0, 0, 0, 0]
@@ -411,8 +412,7 @@ class CMasterWidget(QtWidgets.QWidget):
         if caller == False:
             caller = self.sender()
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        color = colors.getColor()
-        caller.parent.setText(color)
+        caller.parent.setText(self.data_reader.get_random_color())
 
     def generateGender(self, hideMessage=False):
         if not hideMessage:
