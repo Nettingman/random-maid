@@ -9,16 +9,6 @@ from .data import masterPowers, stressExplosions
 masterPowerList = masterPowers.returnMasterPowerList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
 
-traumaList = [
- 'Former delinquent', 'Former juvenile vagrant', 'Former prostitute', 'Social stigma', 'Knows no love',
- 'In love with brother/cousin', 'Broken by training', 'Miscarriage', 'History of suicide attempts',
- 'Horrible accident (car, fall, etc)', 'Kidnapped', 'Assaulted', 'Mistreated by parents', 'Arrested on false charges',
- 'Targeted by a stalker', 'Betrayed by close friend', 'Killed a close friend', 'Betrayed a close friend',
- 'Parents disappeared', "Witnessed parents' death", 'Parents tried to kill you', 'Attacked by parents',
- 'Ran away from home', 'Killed your parents', 'Bad unrequited love', 'Lover died', 'Lover tried to kill you',
- 'Betrayed by lover', 'Killed your lover', 'Major failure', 'Family breakup', 'Took part in something bad',
- 'Wanted by the police', 'Burdened by strong regret', 'Destroyed your homeland', 'Killed many people']
-
 class CMasterWidget(QtWidgets.QWidget):
 
     def __init__(self, data_reader, parent=None):
@@ -606,8 +596,8 @@ class CMasterWidget(QtWidgets.QWidget):
         comboBox.setCurrentIndex(-1)
 
     def setTraumaComboBox(self):
-        for item in traumaList:
-            self.liTrauma.insertItem(100, item)
+        for elem in self.data_reader.data["master"]["traumas"]:
+            self.liTrauma.insertItem(100, elem)
 
         self.liTrauma.setCurrentIndex(-1)
 

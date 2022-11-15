@@ -375,6 +375,15 @@
       ["Magician", "You wield sorcerous powers, in the matter of a typical fantasy wizard."],
       ["Priest", "You are a priest of some religion or other."],
       ["Maid Quality", "Roll 1D66 and re-roll the tens digit if it's less than 4, so you get a result from 41-66 from the Maid Special Quality table.\n>> Maid quality table"]
+    ],
+    "traumas" : [ "Former delinquent", "Former juvenile vagrant", "Former prostitute", "Social stigma", "Knows no love",
+                 "In love with brother/cousin", "Broken by training", "Miscarriage", "History of suicide attempts",
+                 "Horrible accident (car, fall, etc)", "Kidnapped", "Assaulted", "Mistreated by parents", "Arrested on false charges",
+                 "Targeted by a stalker", "Betrayed by close friend", "Killed a close friend", "Betrayed a close friend",
+                 "Parents disappeared", "Witnessed parents' death", "Parents tried to kill you", "Attacked by parents",
+                 "Ran away from home", "Killed your parents", "Bad unrequited love", "Lover died", "Lover tried to kill you",
+                 "Betrayed by lover", "Killed your lover", "Major failure", "Family breakup", "Took part in something bad",
+                 "Wanted by the police", "Burdened by strong regret", "Destroyed your homeland", "Killed many people"
     ]
   }
 }
