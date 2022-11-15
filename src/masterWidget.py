@@ -3,10 +3,7 @@ Widget for the random master dock.
 """
 from random import randint
 from math import floor
-from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import masterPowers
-
-masterPowerList = masterPowers.returnMasterPowerList()
+from PyQt5 import QtWidgets, QtCore
 
 class CMasterWidget(QtWidgets.QWidget):
 
@@ -514,9 +511,7 @@ class CMasterWidget(QtWidgets.QWidget):
 
     def changedMasterPower(self, caller=False):
         comboBox = self.sender()
-        i = comboBox.currentIndex()
-        powerOfMaster = masterPowerList[i]
-        comboBox.setToolTip(powerOfMaster.descript)
+        comboBox.setToolTip(self.data_reader.data["master"]["powers"][comboBox.currentIndex()][1])
 
     def changedStressExplosion(self):
         self.liStress.setToolTip(self.data_reader.data["common"]["stress_explosions"][self.liStress.currentIndex()][1])
@@ -570,8 +565,8 @@ class CMasterWidget(QtWidgets.QWidget):
         self.liMasterType.setCurrentIndex(-1)
 
     def setMasterPowerComboBox(self, comboBox):
-        for obj in masterPowerList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["master"]["powers"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
 
