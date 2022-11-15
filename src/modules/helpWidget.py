@@ -19,7 +19,7 @@ class CHelpWidget(QtWidgets.QWidget):
         hlayout = QtWidgets.QHBoxLayout()
         hlayout.setAlignment(QtCore.Qt.AlignCenter)
         self.picture = QtWidgets.QLabel()
-        maid_picture_path = os.path.join(os.path.dirname(__file__), "..", "resources", "ram.png")
+        maid_picture_path = os.path.join(os.path.dirname(__file__), "..", "..", "resources", "ram.png")
         self.picture.setPixmap(QtGui.QPixmap(maid_picture_path).scaled(360, 360))
         self.picture.setGeometry(0, 0, 360, 360)
         hlayout.addWidget(self.picture)

@@ -6,10 +6,10 @@ Maid RPG character generator
 """
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
-from .maidWidget import CMaidWidget
-from .helpWidget import CHelpWidget
-from .masterWidget import CMasterWidget
-from .butlerWidget import CButlerWidget
+from .modules.maidWidget import CMaidWidget
+from .modules.helpWidget import CHelpWidget
+from .modules.masterWidget import CMasterWidget
+from .modules.butlerWidget import CButlerWidget
 from .modules.data_reader import MaidDataReader
 
 class ApplicationWindow(QtWidgets.QMainWindow):
