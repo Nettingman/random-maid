@@ -45,6 +45,14 @@
       ["Book", "You wield a book as a blunt instrument, and possibly tear out pages, to attack."],
       ["Internal Weapons", "You have some kind of weapons installed in your body."],
       ["Religious Symbol", "You can use a cross, prayer wheel, paper charm, or other seemingly harmless religious symbol to deliver attacks."]
+    ],
+    "types" : [
+      ["Lolita", "Childish, young, innocent, cute, sweet.", [-1, 0, 0, 0, 1, 0], "Luck +1, Athletics -1"],
+      ["Sexy", "Charming, coquettish, womanly body, glamorous.", [0, 0, 0, 1, 0, -1], "Cunning +1, Will -1"],
+      ["Pure", "Pure, maidenly, clean, fragile.", [0, 1, 0, -1, 0, 0], "Affection +1, Cunning -1"],
+      ["Cool", "Composed, expressionless, unflappable, doll-like.", [0, -1, 1, 0, 0, 0], "Skill +1, Affection -1"],
+      ["Boyish", "Wild, energetic, vigorous, at first glance looks like a boy.", [1, 0, -1, 0, 0, 0], "Athletics +1, Skill -1"],
+      ["Heroine", "Earnest, single-minded, tries her very best.", [0, 0, 0, 0, -1, 1], "Will +1, Luck -1"]
     ]
   },
 

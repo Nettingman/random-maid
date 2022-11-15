@@ -4,9 +4,8 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import maidTypes, specialQualities, maidRoots, stressExplosions, maidPowers
+from .data import specialQualities, maidRoots, stressExplosions, maidPowers
 
-maidTypeList = maidTypes.returnMaidTypeList()
 specialQualityList = specialQualities.returnSpecialQualityList()
 maidRootList = maidRoots.returnMaidRootList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
@@ -638,10 +637,10 @@ class CMaidWidget(QtWidgets.QWidget):
 
     def changedMaidType(self):
         comboBox = self.sender()
-        obj = maidTypeList[comboBox.currentIndex()]
-        comboBox.desc.setText(obj.descript)
-        comboBox.setToolTip(obj.tooltip)
-        comboBox.changeList = obj.changeList
+        elem = self.data_reader.data["maid"]["types"][comboBox.currentIndex()]
+        comboBox.setToolTip(elem[1])
+        comboBox.changeList = elem[2]
+        comboBox.desc.setText(elem[3])
         self.calculateStats()
 
     def changedMaidPower(self, comboBox=0):
@@ -724,8 +723,8 @@ class CMaidWidget(QtWidgets.QWidget):
         self.changedMaidPower(comboBox)
 
     def setMaidTypeComboBox(self, comboBox):
-        for obj in maidTypeList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["maid"]["types"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
         comboBox.previousIndex = -1

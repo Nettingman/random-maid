@@ -4,11 +4,10 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import masterType, masterPowers, maidTypes, stressExplosions, masterSpecialQualities, specialQualities
+from .data import masterType, masterPowers, stressExplosions, masterSpecialQualities, specialQualities
 
 masterTypeList = masterType.returnMasterTypeList()
 masterPowerList = masterPowers.returnMasterPowerList()
-maidTypeList = maidTypes.returnMaidTypeList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
 masterSpecialQualityList = masterSpecialQualities.returnMasterQualityList()
 specialQualityList = specialQualities.returnSpecialQualityList()
@@ -540,8 +539,8 @@ class CMasterWidget(QtWidgets.QWidget):
         self.liStress.setToolTip(obj.descript)
 
     def changedFavoriteMaidType(self):
-        obj = maidTypeList[self.liFavorite.currentIndex()]
-        self.liFavorite.setToolTip(obj.tooltip)
+        elem = self.data_reader.data["maid"]["types"][self.liFavorite.currentIndex()]
+        self.liFavorite.setToolTip(elem[1])
 
     def changedSpecialQuailty(self):
         comboBox = self.sender()
@@ -600,8 +599,8 @@ class CMasterWidget(QtWidgets.QWidget):
         self.liStress.setCurrentIndex(-1)
 
     def setFavoriteMaidTypeComboBox(self):
-        for obj in maidTypeList:
-            self.liFavorite.insertItem(100, obj.name)
+        for elem in self.data_reader.data["maid"]["types"]:
+            self.liFavorite.insertItem(100, elem[0])
 
         self.liFavorite.setCurrentIndex(-1)
 
