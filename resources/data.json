@@ -98,6 +98,14 @@
       ["Book", "You wield a book as a blunt instrument, and possibly tear out pages, to attack."],
       ["Internal Weapons", "You have some kind of weapons installed in your body."],
       ["Religious Symbol", "You can use a cross, prayer wheel, paper charm, or other seemingly harmless religious symbol to deliver attacks."]
+    ],
+    "types" : [
+      ["Shadow", "Ninja, Phantom, Escort, Surveillance Expert, Enforcer", [1, 0, 0, 0, 0, 0], "Athletics +1"],
+      ["Elite", "Expert, Right-Hand Man, Trusted Friend, Cynic, Inspector, Wicked Tongue", [0, 0, 0, 1, 0, 0], "Cunning +1"],
+      ["Monster", "Inhuman Strength, Unworldly, Monster, Beast", [1, 0, 0, 0, 0, 0], "Athletics +1"],
+      ["Partner", "Companion, Friend, Adviser, Unbreakable Bond", [0, 1, 0, 0, 0, 0], "Affection +1"],
+      ["Gothic", "Servant, Austere, Mechanical, Educator, Manager", [0, 0, 1, 0, 0, 0], "Skill +1"],
+      ["Veteran", "Expert, Old Hand, Coach, All-Purpose", [0, 0, 0, 0, 0, 0], "Any One Attribute +1\n(Raise this attribute manually!)"]
     ]
   },
 

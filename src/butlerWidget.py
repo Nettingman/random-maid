@@ -5,9 +5,8 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import butlerTypes, butlerPowers, butlerRoots, butlerQualities
+from .data import butlerPowers, butlerRoots, butlerQualities
 
-butlerTypeList = butlerTypes.returnButlerTypeList()
 butlerPowerList = butlerPowers.returnButlerPowerList()
 butlerRootList = butlerRoots.returnButlerRootList()
 butlerQualityList = butlerQualities.returnButlerQualityList()
@@ -566,16 +565,17 @@ class CButlerWidget(QtWidgets.QWidget):
 
     def changedButlerType(self):
         comboBox = self.sender()
-        i = comboBox.currentIndex()
-        comboBox.setToolTip(butlerTypeList[i].tooltip)
-        comboBox.changeList = butlerTypeList[i].changeList
-        comboBox.desc.setText(butlerTypeList[i].descript)
+        ii = comboBox.currentIndex()
+        elem = self.data_reader.data["butler"]["types"][ii]
+        comboBox.desc.setText(elem[1])
+        comboBox.changeList = elem[2]
+        comboBox.setToolTip(elem[3])
         self.calculateStats()
         comboBox.powerBox.setCurrentIndex(-1)
         for j in range(6):
             comboBox.powerBox.removeItem(0)
 
-        for item in butlerPowerList[i]:
+        for item in butlerPowerList[ii]:
             comboBox.powerBox.insertItem(100, item.name)
 
         comboBox.powerBox.setCurrentIndex(-1)
@@ -617,8 +617,8 @@ class CButlerWidget(QtWidgets.QWidget):
         self.liMaidRoot.setCurrentIndex(-1)
 
     def setButlerTypeComboBox(self, comboBox):
-        for obj in butlerTypeList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["butler"]["types"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
 
