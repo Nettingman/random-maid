@@ -6,12 +6,18 @@
       "Cream", "Beige", "Gold", "Gray", "Silver", "Metallic"]
     }
   },
+
   "maid" : {
 
   },
-  "butler" : {
 
+  "butler" : {
+    "colors" : {
+      "suit" : ["Black", "Light Gray", "Dark Gray", "Dark Blue", "White"],
+      "hair" : ["Black", "Gray", "Blonde", "Silver", "White"]
+    }
   },
+
   "master" : {
 
   }

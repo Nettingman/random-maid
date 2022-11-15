@@ -12,8 +12,6 @@ butlerPowerList = butlerPowers.returnButlerPowerList()
 butlerRootList = butlerRoots.returnButlerRootList()
 butlerQualityList = butlerQualities.returnButlerQualityList()
 butlerWeaponList = butlerWeapons.returnWeaponList()
-suitColorList = ['Black', 'Light Gray', 'Dark Gray', 'Dark Blue', 'White']
-hairColorList = ['Black', 'Gray', 'Blonde', 'Silver', 'White']
 
 class CButlerWidget(QtWidgets.QWidget):
 
@@ -467,24 +465,12 @@ class CButlerWidget(QtWidgets.QWidget):
     def generateSuitColor(self, hideMessage=False):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        i = randint(0, 5)
-
-        if i == 5:
-            color = self.data_reader.get_random_color()
-        else:
-            color = suitColorList[i]
-        self.liUniColor.setText(color)
+        self.liUniColor.setText(self.data_reader.get_butler_random_suit_color())
 
     def generateHairColor(self, hideMessage=False):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled color...', 1500)
-        i = randint(0, 5)
-
-        if i == 5:
-            color = self.data_reader.get_random_color()
-        else:
-            color = hairColorList[i]
-        self.liHairColor.setText(color)
+        self.liHairColor.setText(self.data_reader.get_butler_random_hair_color())
 
     def generateEyeColor(self, hideMessage=False):
         if not hideMessage:

@@ -26,3 +26,17 @@ class MaidDataReader:
             return self.data["common"]["colors"]["rare"][index - self.rare_color_start_index]
 
         return self.data["common"]["colors"]["double_chance"][int(index / 2)]
+
+    def get_butler_random_suit_color(self):
+        return self.__get_butler_random_color(self.data["butler"]["colors"]["suit"])
+
+    def get_butler_random_hair_color(self):
+        return self.__get_butler_random_color(self.data["butler"]["colors"]["hair"])
+
+    def __get_butler_random_color(self, color_list):
+        index = random.randrange(len(color_list) + 1)
+        if index >= len(color_list):
+            return self.get_random_color()
+
+        return color_list[index]
+
