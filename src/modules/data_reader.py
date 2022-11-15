@@ -1,7 +1,7 @@
 import os.path
 import json
-import random
 import sys
+from random import randrange, randint
 
 
 class MaidDataReader:
@@ -21,7 +21,7 @@ class MaidDataReader:
         self.rare_color_start_index = self.color_random_max - rare_color_count
 
     def get_random_color(self):
-        index = random.randrange(self.color_random_max)
+        index = randrange(self.color_random_max)
         if index >= self.rare_color_start_index:
             return self.data["common"]["colors"]["rare"][index - self.rare_color_start_index]
 
@@ -33,8 +33,25 @@ class MaidDataReader:
     def get_butler_random_hair_color(self):
         return self.__get_butler_random_color(self.data["butler"]["colors"]["hair"])
 
+    @staticmethod
+    def generate_master_age(type_index):
+        if type_index == 0:
+            return randint(1, 6) + randint(1, 6)
+        elif type_index == 1:
+            return randint(1, 6) + randint(1, 6) + 5
+        elif type_index == 2:
+            return randint(1, 6) + randint(1, 6) + 8
+        elif type_index == 3:
+            return randint(1, 6) + randint(1, 6) + 12
+        elif type_index == 4:
+            return int(str(randint(1, 6)) + str(randint(1, 6)))
+        elif type_index == 5:
+            return int(str(randint(1, 6)) + str(randint(1, 6))) + 10
+
+        raise ValueError("Invalid master type index: {}".format(type_index))
+
     def __get_butler_random_color(self, color_list):
-        index = random.randrange(len(color_list) + 1)
+        index = randrange(len(color_list) + 1)
         if index >= len(color_list):
             return self.get_random_color()
 

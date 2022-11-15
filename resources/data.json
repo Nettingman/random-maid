@@ -110,6 +110,13 @@
   },
 
   "master" : {
-
+    "types" : [
+      ["Small Child", "The Master is a small child. At this age most know nothing of the outside world and have no trace of suspicion.", "2D6"],
+      ["Legitimate Child", "The Master is still a child. He's just starting to understand his power.", "5+2D6"],
+      ["Layman", "The Master is an ordinary person who came into wealth by chance.", "8+2D6"],
+      ["Natural Born", "The Master is a young man or woman, and probably learned certain things wrong and has some twisted ideas.", "12+2D6"],
+      ["Aristocrat", "This person was born to be the master of the house. Regardless of age, he has excellent self-control.", "1D66"],
+      ["Recluse", "The Master has already put an end to his dealings with the outside world, and adopted a secluded lifestyle.", "1D66+10"]
+    ]
   }
 }

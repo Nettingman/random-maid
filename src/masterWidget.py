@@ -4,9 +4,8 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import masterType, masterPowers, stressExplosions, masterSpecialQualities, specialQualities
+from .data import masterPowers, stressExplosions, masterSpecialQualities, specialQualities
 
-masterTypeList = masterType.returnMasterTypeList()
 masterPowerList = masterPowers.returnMasterPowerList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
 masterSpecialQualityList = masterSpecialQualities.returnMasterQualityList()
@@ -440,9 +439,7 @@ class CMasterWidget(QtWidgets.QWidget):
     def generateAge(self, hideMessage=False):
         if not hideMessage:
             self.parent.parent.statusBar().showMessage('Rolled age...', 1500)
-        i = self.liMasterType.currentIndex()
-        typeOfMaster = masterTypeList[i]
-        self.spAge.setValue(typeOfMaster.generateAge())
+        self.spAge.setValue(self.data_reader.generate_master_age(self.liMasterType.currentIndex()))
 
     def generateMasterPower(self, caller=False):
         if caller == False:
@@ -522,11 +519,11 @@ class CMasterWidget(QtWidgets.QWidget):
                     caller.parent.setCurrentIndex(i)
 
     def changedMasterType(self):
-        i = self.liMasterType.currentIndex()
-        typeOfMaster = masterTypeList[i]
-        self.liMasterType.setToolTip(typeOfMaster.descript)
-        self.laAge.setText('Age dice: ' + typeOfMaster.rollText)
-        self.spAge.setValue(typeOfMaster.generateAge())
+        ii = self.liMasterType.currentIndex()
+        type_of_master = self.data_reader.data["master"]["types"][ii]
+        self.liMasterType.setToolTip(type_of_master[1])
+        self.laAge.setText('Age dice: {}'.format(type_of_master[2]))
+        self.spAge.setValue(self.data_reader.generate_master_age(ii))
 
     def changedMasterPower(self, caller=False):
         comboBox = self.sender()
@@ -581,8 +578,8 @@ class CMasterWidget(QtWidgets.QWidget):
             comboBox.setToolTip(item.descript)
 
     def setMasterTypeComboBox(self):
-        for obj in masterTypeList:
-            self.liMasterType.insertItem(100, obj.name)
+        for elem in self.data_reader.data["master"]["types"]:
+            self.liMasterType.insertItem(100, elem[0])
 
         self.liMasterType.setCurrentIndex(-1)
 
