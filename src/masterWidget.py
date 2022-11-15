@@ -4,13 +4,11 @@ Widget for the random master dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import masterPowers, stressExplosions, masterSpecialQualities, specialQualities
+from .data import masterPowers, stressExplosions
 
 masterPowerList = masterPowers.returnMasterPowerList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
-masterSpecialQualityList = masterSpecialQualities.returnMasterQualityList()
-specialQualityList = specialQualities.returnSpecialQualityList()
-specialQualityList = specialQualityList[18:]
+
 traumaList = [
  'Former delinquent', 'Former juvenile vagrant', 'Former prostitute', 'Social stigma', 'Knows no love',
  'In love with brother/cousin', 'Broken by training', 'Miscarriage', 'History of suicide attempts',
@@ -547,13 +545,13 @@ class CMasterWidget(QtWidgets.QWidget):
                     for i in range(26):
                         comboBox.removeItem(36)
 
-                obj = masterSpecialQualityList[comboBox.currentIndex()]
-                comboBox.setToolTip(obj.descript)
+                elem = self.data_reader.data["master"]["qualities"][comboBox.currentIndex()]
+                comboBox.setToolTip(elem[1])
                 if comboBox.currentIndex() == 35:
                     comboBox.setStyleSheet('color: olive')
                     comboBox.insertSeparator(36)
-                    for item in reversed(specialQualityList):
-                        comboBox.insertItem(37, item.name)
+                    for elem in reversed(self.data_reader.data["maid"]["qualities"][18:]):
+                        comboBox.insertItem(37, elem[0])
 
                 else:
                     comboBox.setStyleSheet('color: black')
@@ -566,16 +564,16 @@ class CMasterWidget(QtWidgets.QWidget):
                 comboBox.removeItem(55)
 
             comboBox.insertSeparator(55)
-            item = specialQualityList[(comboBox.currentIndex() - 37)]
-            comboBox.setToolTip(item.descript)
+            elem = self.data_reader.data["maid"]["qualities"][18:][(comboBox.currentIndex() - 37)]
+            comboBox.setToolTip(elem[1])
             comboBox.previousIndex = comboBox.currentIndex()
-            for item in reversed(item.secondaryTable):
-                comboBox.insertItem(56, item.name)
+            for item in reversed(elem[2]):
+                comboBox.insertItem(56, item[0])
 
         else:
             comboBox.setStyleSheet('color: black')
-            item = specialQualityList[(comboBox.previousIndex - 37)].secondaryTable[(comboBox.currentIndex() - 56)]
-            comboBox.setToolTip(item.descript)
+            item = self.data_reader.data["maid"]["qualities"][18:][(comboBox.previousIndex - 37)][2][(comboBox.currentIndex() - 56)]
+            comboBox.setToolTip(item[1])
 
     def setMasterTypeComboBox(self):
         for elem in self.data_reader.data["master"]["types"]:
@@ -602,8 +600,8 @@ class CMasterWidget(QtWidgets.QWidget):
         self.liFavorite.setCurrentIndex(-1)
 
     def setSpecialQualityComboBox(self, comboBox):
-        for obj in masterSpecialQualityList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["master"]["qualities"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
 

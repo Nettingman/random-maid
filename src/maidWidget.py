@@ -4,9 +4,8 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import specialQualities, maidRoots, stressExplosions, maidPowers
+from .data import maidRoots, stressExplosions, maidPowers
 
-specialQualityList = specialQualities.returnSpecialQualityList()
 maidRootList = maidRoots.returnMaidRootList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
 maidPowerList = maidPowers.returnMaidPowerList()
@@ -666,12 +665,12 @@ class CMaidWidget(QtWidgets.QWidget):
                     for i in range(7):
                         comboBox.removeItem(36)
 
-                obj = specialQualityList[comboBox.currentIndex()]
-                comboBox.setToolTip(obj.descript)
-                if obj.secondaryTable != []:
+                elem = self.data_reader.data["maid"]["qualities"][comboBox.currentIndex()]
+                comboBox.setToolTip(elem[1])
+                if elem[2] is not None:
                     comboBox.setStyleSheet('color: olive')
                     comboBox.insertSeparator(36)
-                    for item in reversed(obj.secondaryTable):
+                    for item in reversed(elem[2]):
                         comboBox.insertItem(37, item.name)
 
                     comboBox.previousIndex = comboBox.currentIndex()
@@ -682,7 +681,7 @@ class CMaidWidget(QtWidgets.QWidget):
                 comboBox.setToolTip('')
         else:
             comboBox.setStyleSheet('color: black')
-            item = specialQualityList[comboBox.previousIndex].secondaryTable[(comboBox.currentIndex() - 37)]
+            item = self.data_reader.data["maid"]["qualities"][comboBox.previousIndex][2][(comboBox.currentIndex() - 37)]
             comboBox.setToolTip(item.descript)
 
     def changedWeapon(self):
@@ -730,8 +729,8 @@ class CMaidWidget(QtWidgets.QWidget):
         comboBox.previousIndex = -1
 
     def setSpecialQualityComboBox(self, comboBox):
-        for obj in specialQualityList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["maid"]["qualities"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
 

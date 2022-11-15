@@ -53,6 +53,188 @@
       ["Cool", "Composed, expressionless, unflappable, doll-like.", [0, -1, 1, 0, 0, 0], "Skill +1, Affection -1"],
       ["Boyish", "Wild, energetic, vigorous, at first glance looks like a boy.", [1, 0, -1, 0, 0, 0], "Athletics +1, Skill -1"],
       ["Heroine", "Earnest, single-minded, tries her very best.", [0, 0, 0, 0, -1, 1], "Will +1, Luck -1"]
+    ],
+    "qualities" : [
+      ["Glasses", "You wear glasses, and can't use contact lenses. The frame design can be whatever you want.", null],
+      ["Freckles", "You have freckles.", null],
+      ["Sickly", "You've got an incurable disease. However, this doesn't adversely affect your attributes. Choose your own symptoms.", null],
+      ["Quiet", "You have a cool, subtle demeanor. No, there are no rules regarding how often you speak.", null],
+      ["Easygoing", "You take things slow and calm, at your own pace. This doesn't affect your attributes.", null],
+      ["Neat Freak", "You're obsessed with cleanliness, and can't let the tiniest bit of dirt go unnoticed.", null],
+      ["Brown Skin", "Your skin is a dark brown color. It could be natural, or a tan.", null],
+      ["Albino", "You have no pigment. You're not necessarily completely colorless, this could simply be a very pale complexion.", null],
+      ["Shy", "You're very shy. Don't forget to remain silent when encountering NPCs you haven't met before.", null],
+      ["Actually A Guy", "You're actually a guy (cross-dresser?). Or possibly a hermaphrodite.", null],
+      ["Overactive Imagination", "You frequently get caught up in your own imaginary world, or else tend to daydream a lot.", null],
+      ["Greedy", "You will do absolutely anything for the sake of money.", null],
+      ["Elf Ears", "You have long, pointed ears.", null],
+      ["Nekomimi", "This varies a bit depending on the setting, but you're a catgirl, with the ears and possibly tail of a cat.", null],
+      ["Android/Gynoid", "You're not human, but rather a human-looking robot. Parts of your body are very obviously artificial.", null],
+      ["Vampire", "You are a vampire, with long fangs. Be sure to act . . . vampiric.", null],
+      ["Princess", "You're actually the daughter of a family of even greater standing than the master. Depending on the setting, you could even be from another country's royal family. Whether you are in disguise or not is up to you.", null],
+      ["Angel/Devil", "You are a being from another world charged with judging good and evil. The design and the details of your origins are up to you.", null],
+      ["Uniform", "You've managed to make a special arrangement with your uniform.\n>> Uniform table", [
+              ["Tights", "In place of a skirt, you wear tights of some color. Athletic, colorful, sexy, or weird (leopard pattern, RAWR!) it's up to you. (For the purposes of the maid uniform rules, treat these as a skirt)"],
+              ["China Dress", "You wear a Chinese-style cheongsam maid uniform. (For the purposes of the rules, treat this as a one-piece maid uniform)."],
+              ["Armor", "Your maid uniform is actually a stylized suit of metal armor."],
+              ["Bondage", "Your maid uniform is made of shiny rubber or leather, and generally a bit suspicious."],
+              ["Miniskirt", "Your skirt is very short, to the point where one can almost see its contents."],
+              ["Kappougi", "Instead of a Western maid uniform, you wear a Japanese-style one with a kimono and an apron over it."]
+        ]
+      ],
+      ["Symbol", "You have some kind of special mark on your uniform of headdress.\n>> Symbol table", [
+              ["Skull", "Your headdress, apron, necktie, forehead, or chest has a skull mark."],
+              ["Bat", "Your headdress, apron, necktie, forehead, or chest has a bat symbol."],
+              ["Cross", "Your headdress, apron, necktie, forehead, or chest has a cross on it."],
+              ["Yin-Yang", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."],
+              ["Star", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."],
+              ["Card suit", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."]
+        ]
+      ],
+      ["Delinquent", "Something about you is very much like a delinquent.\n>> Delinquent table", [
+              ["Cigarettes", "You've always got a cigarette in your mouth, or are chomping on a cigar."],
+              ["Tattoo", "Somewhere on your body - or maybe even all over it - you have a tattoo."],
+              ["Sunglasses", "You always wear sunglasses or mirrorshades. Even at night."],
+              ["Bad Expression", "You have a perpetual unpleasant facial expression (as if you're always angry, or always about to kick ass at any moment), and this makes first meetings difficult."],
+              ["Piercings", "You have piercings, and not just in your ears, but perhaps your forehead, lips, eyelids, chin, etc."],
+              ["Rough Speak", "You talk like a gangster, be it a Mafioso or a street ganger."]
+        ]
+      ],
+      ["Accent", "You have an unusual way of speaking.\n>> Accent table", [
+              ["Southern", "Y'all talk like some kinda' country bumpkin or somethin', from down in the American South."],
+              ["British", "You talk with a British accent of some kind. We'll leave it up to you what kind specifically. If you are already from the UK in real life, then you are now DOUBLE BRITISH. Or choose Scottish or Welsh."],
+              ["Pidgin English", "You come from a country/society where English is taught as a pidgin language. You might sound like a Japanese salaryman or pop idol ('Body Feels Exit!'). Pick a country and go with it."],
+              ["Meow", "You like to sprinkle cat sounds in your speech every now and then."],
+              ["Knight", "You sound like a knight from a movie, or possibly a Renaissance Faire reject. Remember to say 'Thou art' and whatnot a lot."],
+              ["Foreigner", "Pick a foreign nationality for your Maid other than Japanese. American (Brooklyn, Texas), French, Russian, Mexican, Nigerian, Indian, Canadian, etc."]
+        ]
+      ],
+      ["Hairstyle", "You have a special hairstyle.\n>> Hairstyle table", [
+              ["Long Ringlets", "Your hair is done up in large, long ringlets."],
+              ["Dumplings", "Your hair is long, with 'dumplings' on top."],
+              ["Mesh", "You have a mesh haircut, a short, stylish hairdo that's trendy in Japan."],
+              ["Curly Hair", "Your hair is curly enough to defy gravity, and always takes the same shape."],
+              ["One Eye Hair", "Your hair hangs down so that it conceals one of your eyes."],
+              ["Antenna Hair", "Your hair has antennas/feelers and a mind of its own."]
+        ]
+      ],
+      ["Accessory", "You have a special accessory attached to your uniform.\n>> Accessory table", [
+              ["Collar", "Your hair has antennas/feelers and a mind of its own."],
+              ["Large Ribbon", "You wear a large ribbon in your hair."],
+              ["Spike", "Your maid uniform has spikes attached to it."],
+              ["Chains", "Your maid uniform has jangling chains attached to it."],
+              ["Black Leather Gloves", "You normally wear black leather gloves. These can be fingerless or have rivets if you like."],
+              ["Pet", "You have a cat, snake, raven, or some other small animal as a pet that rests on your shoulder or in your hand."]
+        ]
+      ],
+      ["Relationship or Perversion", "Lighter Game? You have a relationship to another player character (Maid).\n>> Relationship table\nDarker Game? You have a bizarre perversion of some kind.\n>> Perversion table", [
+              ["Sibling or Nymphomaniac", "You're related by blood to one of the other characters.\nor\nYou're abnormally interested in physical love. It's up to the players and GM to decide how far you want to, or should, roleplay this."],
+              ["Childhood Friends or Sadist", "You grew up together in the same neighborhood as one of the other characters, and have been great friends since a very early age.\nor\nYou're excited by causing pain and suffering to others."],
+              ["Mentor or Masochist", "You look upon one of the characters as a personal mentor, perhaps even as a father/mother figure\nor\nYou're excited by being caused pain and suffering by others."],
+              ["Friendly Rival or Womanizer", "You and another character are rivals in some area of life, and you always find yourself both consciously or subconsciously competing with, and comparing yourself with, that person. However, you are still friends (at least in appearance).\nor\nYou're only romantically attracted to members of the same sex, which is fine (and perhaps expected)... But in your case, it's turned up to '11'."],
+              ["Ex-Lover/Love Rival or Likes Them Young", "You used to date another character. Perhaps there are still feelings. Alternately, you both might be seeking the love of a third person.\nor\nYou're only interested in . . . younger partners. You can decide what age range this entails."],
+              ["Vengeance or Exhibitionist", "Another character wronged you in some way in the past. She may not even realize that she did (and it might not have seemed a big deal). But you will never forget.\nor\nYou enjoy showing off your nude or semi/nude body. 'Inappropriate dress' is not just a word, it's a way of life."]
+        ]
+      ],
+      ["Criminal Tendencies", "You have an inclination towards criminal acts.", [
+              ["Killer", "You have a bad habit: killing people."],
+              ["Pyromaniac", "You love setting fires. You might even set fire to the mansion . . ."],
+              ["Kleptomaniac", "You can't help but steal things, regardless of whether or not you have any use for them."],
+              ["Addict", "Whether it's narcotics, stimulants, or just sleeping pills, you're a substance-abuser. If you don't get to have any, you'll experience withdrawal symptoms."],
+              ["Otaku", "You have some obsession that you tirelessly pursue, with little or no regard for common sense."],
+              ["Stalker", "You're stalking a particular person. Select the target from among the other PCs or the master."]
+        ]
+      ],
+      ["Injury", "Because of mistreatment or an accident, you have some kind of permanent physical injury.\n>> Injury table", [
+              ["Patchwork", "Your body is covered with stitching scars."],
+              ["One Eye", "You have only one eye. You're free to decide whether you wear an eye patch, and if so its design."],
+              ["Burns", "Your face, body, etc. are covered with painful-looking scars from burns."],
+              ["Whip Scars", "Your back and such is covered with painful-looking welts from whippings you received (and may possibly be still receiving?)"],
+              ["Bandages", "You wear many bandages and casts, concealing injuries that will not heal."],
+              ["Blind", "You were rendered blind a long time ago. (No particular penalties for this: See the classic Zatoichi movies for reference)."]
+        ]
+      ],
+      ["Tragic Love", "You have had sad or tragic experiences with love.\n>> Tragic love table", [
+              ["Separations", "For some reason love just never works out for you. At this point you've resigned yourself to fate."],
+              ["Lover Died", "You had a lover who died since then you've been afraid to fall in love."],
+              ["Killed Your Lover", "For whatever reason, you killed your last lover since then you've been afraid to fall in love. Or afraid for the object of your desire."],
+              ["Former Prostitute", "You used to sell your body, for cheap. A complex remains."],
+              ["Betrayal", "You were once betrayed by a lover since then you've been afraid to fall in love or let your guard down."],
+              ["Stalker Damage", "You were once victimized by a stalker. You can't trust members of the opposite sex . . . or maybe the same sex."]
+        ]
+      ],
+      ["Dark Past", "There is something dark in your personal history.\n>> Dark past table", [
+              ["Former Delinquent", "Although no one would know it looking at you now, you used to be a delinquent. Fortunately right now there's no one (in the mansion at least) who knows about your past."],
+              ["Former Killer", "You were once a hired killer. Even now, your skills have not been dulled."],
+              ["Amnesiac", "You've lost your memories from when you were very young. (The GM should come up with something to reveal during the game)."],
+              ["Bad Reputation", "You were involved with some bad stuff back in the day, and you have the dubious honor of being a legend for all the wrong reasons."],
+              ["Wanted", "The police want to question you about a serious crime. The player can decide whether or not the character is actually guilty."],
+              ["Runaway", "You've left your real home without permission."]
+        ]
+      ],
+      ["Trauma", "After some terrible incident, you were traumatized.\n>> Trauma table", [
+              ["Suicide Attempts", "In the past, you attempted suicide many times."],
+              ["Killed Your Parents", "For whatever reason, you are responsible for the death of your parents."],
+              ["Saw Parent Die", "You witnessed your parents' (one or both) death with your own eyes."],
+              ["Sibling Hate", "You and your sister(s) detest each other."],
+              ["Family Breakup", "For some reason (economic trouble?) your family was forced to break up. You may have even caused it."],
+              ["Abusive Parents", "You were raised by abusive parents."]
+        ]
+      ],
+      ["Secret Job", "You're not just a maid: you're secretly holding another job.\n>> Secret job table", [
+              ["Assassin", "While you put on the facade of being a maid, underneath you're a coldhearted killer for hire."],
+              ["Hacker", "Aside from being a maid, you're a hacker, breaking into computer systems."],
+              ["Scientist", "Along with being a maid, you're some kind of mad scientist."],
+              ["Doctor/Pharmacist", "In addition to being a maid, you have the skills of a doctor or a pharmacist."],
+              ["Doujin Artist", "In addition to being a maid, you create doujinshi in your spare time. You can decide the genre."],
+              ["Pro Creator", "Along with being a maid, you're working as a professional creator, craftsperson or artist. You can decide the form and genre of your works."]
+        ]
+      ],
+      ["Membership", "In addition to being a maid, you're also a member of a certain organization.\n>> Membership table", [
+              ["Evil Secret Society", "You're a member of an evil secret society that seeks to conquer or destroy the world."],
+              ["Secret Agency", "You're part of a secret agency under the government or the United Nations, some sort of intelligence agent or spy."],
+              ["Cult", "You're a member of some kind of eccentric cult, whether as a believer, a leader, or even the founder."],
+              ["Political Organization", "You're part of a group organized around some kind of political ideal, possibly something extreme to the point of insanity."],
+              ["Shadow Clan", "You're a member of one of the secret organizations that has existed throughout history. You could be a ninja, a magician, one of the knights templar, a kung fu assassin, etc."],
+              ["Government Official", "You're actually a government official who is working as a maid, whether because you're a nurse, a detective going undercover, or a politician's secretary."]
+        ]
+      ],
+      ["Shapeshifter", "You are an animal or weapon that has taken the form of a maid.\n>> Shapeshifter table", [
+              ["Fox", "You're actually a fox, and can display or hide your ears and tail at will."],
+              ["Spider", "You're actually a spider, and you can become an actual human-sized spider, or else just grow up to six extra arms at will."],
+              ["Raven", "You're actually a raven. You have black wings that can be displayed or hidden."],
+              ["Bunny", "You're actually a bunny, with bunny ears and a tail."],
+              ["Tiger/Lion", "You're actually a predatory cat, and you have ears, a tail, claws, and sharp teeth than you can display or hide at will."],
+              ["Snake", "You're actually a snake, and you can take on a naga form, turning the lower half of your body into a snake tail."]
+        ]
+      ],
+      ["Monster", "You're not human, but rather some kind of monster.\n>> Monster table", [
+              ["Mermaid", "You're actually a mermaid. You love water, and your ears sometimes look like fins."],
+              ["Zombie/Mummy", "You're actually an animated corpse. Your complexion is probably bad, and you have conspicuous wounds."],
+              ["Werewolf", "You're actually a werewolf (or maybe a weretiger). Whether or not you want to, you turn into a wolf (or tiger) during a full moon."],
+              ["Succubus", "You're actually a succubus, a female demon that traps her prey by arousing their desires. You have some demonic physical traits (you decide the specifics) that can be displayed or hidden."],
+              ["Ghost", "You're actually a ghost. You might have been one of the master's ancestors, or perhaps a maid who worked at the mansion in the past."],
+              ["Shinigami", "You're actually a shinigami, a death reaper. As such, you carry with you an aura of death. You might be there to deliver a specific person to the other side, or perhaps your reasons are more mundane."]
+        ]
+      ],
+      ["Magic", "You can use some kind of magical power.\n>> Magic table", [
+              ["Priestess", "You can use magic grounded in some kind of religious ceremony. You must use various types of religious symbols to do so."],
+              ["Onmyouji", "You practice Eastern-style magic based on Taoist principles. Your key item for this is jufu, special curse charms written in brush ink on strips of paper."],
+              ["Fortuneteller", "Within certain limits, you have the ability to predict the future. There are countless methods of divination."],
+              ["Western Magician", "You practice alchemy, Kabbalah, or some other form of Western sorcery. As such, you are a staffwielding orthodox magician."],
+              ["Devil Summoner", "You know the spells necessary to summon demons. Your tools of the trade are magic circles, a black cloak, and ancient books."],
+              ["Necromancer", "You wield magic that lets you control the souls and bodies of the dead. Your tools of the trade include skulls and black clothes."]
+        ]
+      ],
+      ["Absurd", "You're something that flies in the face of common sense.\n>> Absurd table", [
+              ["Alien", "You're an alien who came to our world from somewhere in outer space. Your body can have some special properties if you wish."],
+              ["Cyborg", "You were turned into a cyborg by an evil secret society or some other country. Your body can have some special features if you wish."],
+              ["Runaway Ninja", "You ran away from your ninja village."],
+              ["Magical Girl", "You came from a land of magic in order to train."],
+              ["Fairy", "You're one of the fae folk. You can be a generic pixie, or something more specific."],
+              ["Mutant", "You've suffered some kind of strange mutation."]
+        ]
+      ]
     ]
   },
 
@@ -117,6 +299,44 @@
       ["Natural Born", "The Master is a young man or woman, and probably learned certain things wrong and has some twisted ideas.", "12+2D6"],
       ["Aristocrat", "This person was born to be the master of the house. Regardless of age, he has excellent self-control.", "1D66"],
       ["Recluse", "The Master has already put an end to his dealings with the outside world, and adopted a secluded lifestyle.", "1D66+10"]
+    ],
+    "qualities" : [
+      ["Glasses", "You wear glasses, and can't use contact lenses. The frame design can be whatever you want, and this can include a monocle."],
+      ["Sickly", "You've got an incurable disease. However, this doesn't adversely affect your attributes."],
+      ["Royalty", "You're among the heads of a country or organization, and as a result your life is often put in danger."],
+      ["Quiet", "Strangely different from the 'Cool'', Maid Type. No, there are no rules regarding how often you speak."],
+      ["My Pace", "You like to live life at your own particular tempo, and you're always calm and laid-back. This does not affect your attributes."],
+      ["OCD", "You're obsessed with hygiene management. You can't let the slighted bit of dirt pass."],
+      ["Brown Skin", "Your skin is a dark brown color, either naturally or because of tanning."],
+      ["Albino", "You have no pigment. You're not necessarily completely colorless, and this can simply be a very pale complexion."],
+      ["Shy", "You're very shy. Don't forget to remain silent when encountering NPCs you haven't met before."],
+      ["Cross-Dresser", "You outwardly appear to be of the opposite sex, which gives you a kind of perverse allure."],
+      ["Imagination", "You frequently get caught up in your own imaginary world."],
+      ["Hermaphrodite", "You're both male and female. The player can decide which is the base sex."],
+      ["Bishounen/Bishoujo", "Not only are you attractive, but women - and men - adore you. There's a good chance that you're also romantically attracted to members of the same sex."],
+      ["Noble Hair", "Your hair is done up in long rolls, your beard is very aristocratic, or you otherwise have hair that your position amongst nobility. clear"],
+      ["Hedonist", "You only care about being able to passively enjoy life, or to put it nicely, you have no prejudices to speak of."],
+      ["Vampire", "You are a vampire, with long fangs. Be sure to act... vampiric."],
+      ["Otaku", "You have some obsession that you tirelessly pursue, with little or no regard for common sense."],
+      ["Angel/Devil", "You are a being from another world charged with judging good and evil. The design and the details of your origins are up to you."],
+      ["Lecherous", "Sexual harassment isn't just a crime, it's a way of life."],
+      ["Sadist", "You're excited by causing pain and suffering to others."],
+      ["Masochist", "You're excited by being caused pain and suffering by others."],
+      ["Handicapped", "You can only move around on your own with a wheelchair, or you might even outright be confined to your bed."],
+      ["Scars", "Your face, back, etc. are covered with painful-looking scars."],
+      ["Kidnapped", "You were once kidnapped and held for 1D6 days. Even today it remains a scar in your heart."],
+      ["Capable Sibling", "You have a sibling who excels at seemingly everything. You're tormented by an inferiority complex."],
+      ["Family Hate", "You despise one or more of your parents or siblings. The GM can decide what if anything happened in the past."],
+      ["Professional Criminal", "You're a professional criminal, and most of your assets no doubt came from ill-gotten gains."],
+      ["Amnesiac", "You've lost your memories from when you were very young. (The GM should come up with something to reveal during the game)."],
+      ["Artist", "You are a musician, painter, writer, actor, singer, composer, or some other kind of highly talented artist."],
+      ["Evil Emperor", "You are the leader of an evil kingdom or secret society, or the leader of a group aimed at tearing down society."],
+      ["Undead", "Despite your rotting body, you live on. This can be a mummy, zombie, lich, etc."],
+      ["Scientist", "You are a scientist who freely commands advanced technology, and who dabbled in countless fields."],
+      ["Oracle", "You can predict the future to a certain degree. There are any number of possible ways this can be carried out, and the player is free to define how their character does so."],
+      ["Magician", "You wield sorcerous powers, in the matter of a typical fantasy wizard."],
+      ["Priest", "You are a priest of some religion or other."],
+      ["Maid Quality", "Roll 1D66 and re-roll the tens digit if it's less than 4, so you get a result from 41-66 from the Maid Special Quality table.\n>> Maid quality table"]
     ]
   }
 }
