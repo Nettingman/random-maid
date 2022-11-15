@@ -4,10 +4,9 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import maidTypes, weapons, specialQualities, maidRoots, stressExplosions, maidPowers
+from .data import maidTypes, specialQualities, maidRoots, stressExplosions, maidPowers
 
 maidTypeList = maidTypes.returnMaidTypeList()
-weaponList = weapons.returnWeaponList()
 specialQualityList = specialQualities.returnSpecialQualityList()
 maidRootList = maidRoots.returnMaidRootList()
 stressExplosionList = stressExplosions.returnStressExplosionList()
@@ -689,8 +688,8 @@ class CMaidWidget(QtWidgets.QWidget):
 
     def changedWeapon(self):
         if not self.liWeapon.currentIndex() == -1:
-            obj = weaponList[self.liWeapon.currentIndex()]
-            self.liWeapon.setToolTip(obj.descript)
+            desc = self.data_reader.data["maid"]["weapons"][self.liWeapon.currentIndex()][1]
+            self.liWeapon.setToolTip(desc)
         else:
             self.liWeapon.setToolTip('')
 
@@ -738,8 +737,8 @@ class CMaidWidget(QtWidgets.QWidget):
         comboBox.setCurrentIndex(-1)
 
     def setWeaponComboBox(self):
-        for obj in weaponList:
-            self.liWeapon.insertItem(100, obj.name)
+        for elem in self.data_reader.data["maid"]["weapons"]:
+            self.liWeapon.insertItem(100, elem[0])
 
         self.liWeapon.setCurrentIndex(-1)
 

@@ -5,13 +5,12 @@ Widget for the random maid dock.
 from random import randint
 from math import floor
 from PyQt5 import QtWidgets, QtGui, QtCore
-from .data import butlerTypes, butlerPowers, butlerRoots, butlerQualities, butlerWeapons
+from .data import butlerTypes, butlerPowers, butlerRoots, butlerQualities
 
 butlerTypeList = butlerTypes.returnButlerTypeList()
 butlerPowerList = butlerPowers.returnButlerPowerList()
 butlerRootList = butlerRoots.returnButlerRootList()
 butlerQualityList = butlerQualities.returnButlerQualityList()
-butlerWeaponList = butlerWeapons.returnWeaponList()
 
 class CButlerWidget(QtWidgets.QWidget):
 
@@ -607,7 +606,7 @@ class CButlerWidget(QtWidgets.QWidget):
         comboBox = self.sender()
         i = comboBox.currentIndex()
         if not i == -1:
-            comboBox.setToolTip(butlerWeaponList[i].descript)
+            comboBox.setToolTip(self.data_reader.data["butler"]["weapons"][i][1])
         else:
             comboBox.setToolTip('')
 
@@ -630,8 +629,8 @@ class CButlerWidget(QtWidgets.QWidget):
         comboBox.setCurrentIndex(-1)
 
     def setButlerWeaponComboBox(self, comboBox):
-        for obj in butlerWeaponList:
-            comboBox.insertItem(100, obj.name)
+        for elem in self.data_reader.data["butler"]["weapons"]:
+            comboBox.insertItem(100, elem[0])
 
         comboBox.setCurrentIndex(-1)
 
