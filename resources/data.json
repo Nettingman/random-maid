@@ -107,8 +107,8 @@
               ["Bat", "Your headdress, apron, necktie, forehead, or chest has a bat symbol."],
               ["Cross", "Your headdress, apron, necktie, forehead, or chest has a cross on it."],
               ["Yin-Yang", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."],
-              ["Star", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."],
-              ["Card suit", "Your headdress, apron, necktie, forehead, or chest has a yin-yang symbol."]
+              ["Star", "Your headdress, apron, necktie, forehead, or chest has a five- or six-pointed star mark."],
+              ["Card suit", "Your headdress, apron, necktie, forehead, or chest has is marked with one of the four suits from playing cards: hearts, diamonds, clubs or spades."]
         ]
       ],
       ["Delinquent", "Something about you is very much like a delinquent.\n>> Delinquent table", [
